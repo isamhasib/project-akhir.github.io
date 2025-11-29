@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MathLearn - Platform Pembelajaran Matematika</title>
+    <style>
+      :root {
+        --primary: #7b1fa2;
+        --primary-light: #9c27b0;
+        --primary-dark: #6a1b9a;
+        --secondary: #2196f3;
+        --text: #333;
+        --text-light: #666;
+        --bg: #ffffff;
+        --bg-light: #f8f9fa;
+        --border: #e0e0e0;
+        --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        --radius: 8px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", system-ui, sans-serif;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background: var(--bg);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        border-bottom: 1px solid var(--border);
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: transform 0.3s ease;
+      }
+
+      .logo:hover {
+        transform: scale(1.05);
+      }
+
+      .nav-center {
+        display: flex;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      /* Dropdown Styles */
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: var(--bg);
+        min-width: 180px;
+        box-shadow: var(--shadow);
+        border-radius: var(--radius);
+        z-index: 1000;
+        margin-top: 0.5rem;
+        overflow: hidden;
+        animation: dropdownFade 0.3s ease-out;
+      }
+
+      @keyframes dropdownFade {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      .dropdown-content a {
+        display: block;
+        padding: 0.75rem 1rem;
+        text-decoration: none;
+        color: var(--text);
+        border-bottom: 1px solid var(--border);
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        font-size: 0.9rem;
+      }
+
+      .dropdown-content a:hover {
+        background: var(--bg-light);
+        color: var(--primary);
+        padding-left: 1.25rem;
+        transform: translateX(5px);
+      }
+
+      .dropdown-content a:last-child {
+        border-bottom: none;
+      }
+
+      .nav-item {
+        margin: 0 1rem;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        font-weight: 500;
+        position: relative;
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        color: var(--text);
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .nav-item:hover {
+        color: var(--primary);
+        transform: translateY(-2px);
+      }
+
+      .nav-item::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary);
+        transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .nav-item:hover::after {
+        width: 100%;
+      }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .btn-home {
+        padding: 0.5rem 1.5rem;
+        font-size: 0.9rem;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        box-shadow: 0 2px 8px rgba(123, 31, 162, 0.2);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .btn-home::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s;
+      }
+
+      .btn-home:hover::before {
+        left: 100%;
+      }
+
+      .btn-home:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 4px 15px rgba(123, 31, 162, 0.3);
+      }
+
+      .btn-home:active {
+        transform: translateY(-1px) scale(1.02);
+      }
+
+      .hero {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        padding: 4rem 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 20% 80%, rgba(123, 31, 162, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(33, 150, 243, 0.1) 0%, transparent 50%);
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .hero-content {
+        max-width: 800px;
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        color: var(--primary-dark);
+        font-weight: 700;
+        animation: titleEntrance 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        text-align: center;
+        width: 100%;
+      }
+
+      @keyframes titleEntrance {
+        0% {
+          opacity: 0;
+          transform: translateY(30px) scale(0.9);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+        color: var(--text-light);
+        margin-bottom: 2.5rem;
+        max-width: 600px;
+        animation: textEntrance 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s both;
+        text-align: center;
+        width: 100%;
+      }
+
+      @keyframes textEntrance {
+        0% {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 3rem;
+        animation: buttonsEntrance 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s both;
+      }
+
+      @keyframes buttonsEntrance {
+        0% {
+          opacity: 0;
+          transform: translateY(50px) scale(0.95);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .btn-primary {
+        padding: 0.75rem 2rem;
+        font-size: 1.1rem;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        box-shadow: 0 4px 15px rgba(123, 31, 162, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-primary::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s;
+      }
+
+      .btn-primary:hover::before {
+        left: 100%;
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-dark);
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 8px 25px rgba(123, 31, 162, 0.4);
+      }
+
+      .btn-primary:active {
+        transform: translateY(-1px) scale(1.02);
+      }
+
+      .btn-secondary {
+        padding: 0.75rem 2rem;
+        font-size: 1.1rem;
+        background: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+        border-radius: 50px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-secondary::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 100%;
+        background: var(--primary);
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        z-index: -1;
+      }
+
+      .btn-secondary:hover::before {
+        width: 100%;
+      }
+
+      .btn-secondary:hover {
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(123, 31, 162, 0.3);
+      }
+
+      .demo-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        position: relative;
+        z-index: 2;
+        animation: demoEntrance 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s both;
+        max-width: 45%;
+      }
+
+      @keyframes demoEntrance {
+        0% {
+          opacity: 0;
+          transform: translateY(60px) rotateX(10deg);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) rotateX(0);
+        }
+      }
+
+      .demo-section p {
+        color: var(--text-light);
+        font-style: italic;
+        margin-bottom: 0;
+        font-size: 0.9rem;
+      }
+
+      .demo-placeholder {
+        width: 400px;
+        height: 400px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        background: var(--bg);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transform: translateZ(0);
+        border: 2px dashed var(--border);
+      }
+
+      .demo-placeholder:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .placeholder-icon {
+        font-size: 4rem;
+        color: var(--primary-light);
+        margin-bottom: 1rem;
+      }
+
+      .placeholder-text {
+        color: var(--text-light);
+        text-align: center;
+        max-width: 80%;
+      }
+
+      .section-divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--border), transparent);
+        margin: 4rem 2rem;
+        opacity: 0;
+        animation: fadeIn 1s ease-in-out 1s forwards;
+      }
+
+      /* Materi Sections */
+      .materi-sections {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .materi-section {
+        margin-bottom: 4rem;
+        padding: 3rem;
+        background: var(--bg-light);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        opacity: 0;
+        transform: translateY(50px);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .materi-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(123, 31, 162, 0.05), transparent);
+        transition: left 0.6s ease;
+      }
+
+      .materi-section:hover::before {
+        left: 100%;
+      }
+
+      .materi-section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .materi-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+
+      .materi-title {
+        font-size: 2rem;
+        color: var(--primary-dark);
+        font-weight: 700;
+        position: relative;
+      }
+
+      .materi-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: var(--primary);
+        border-radius: 2px;
+        transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .materi-section:hover .materi-title::after {
+        width: 100px;
+      }
+
+      .materi-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .materi-text {
+        padding-right: 2rem;
+      }
+
+      .materi-text p {
+        font-size: 1.1rem;
+        color: var(--text-light);
+        margin-bottom: 1.5rem;
+        line-height: 1.7;
+        transition: transform 0.3s ease;
+      }
+
+      .materi-text p:hover {
+        transform: translateX(5px);
+      }
+
+      .materi-visual {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 2rem;
+        background: rgba(123, 31, 162, 0.05);
+        border-radius: var(--radius);
+        border-left: 4px solid var(--primary);
+      }
+
+      .materi-visual h3 {
+        font-size: 1.5rem;
+        color: var(--primary-dark);
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .materi-visual ul {
+        list-style-type: none;
+        padding-left: 0;
+      }
+
+      .materi-visual li {
+        margin-bottom: 0.8rem;
+        padding-left: 1.5rem;
+        position: relative;
+        color: var(--text-light);
+        line-height: 1.6;
+      }
+
+      .materi-visual li:before {
+        content: "▸";
+        position: absolute;
+        left: 0;
+        color: var(--primary);
+        font-weight: bold;
+      }
+
+      .materi-placeholder {
+        width: 300px;
+        height: 300px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        background: var(--bg);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        border: 2px dashed var(--border);
+      }
+
+      .materi-placeholder:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .materi-icon {
+        font-size: 3rem;
+        color: var(--primary-light);
+        margin-bottom: 1rem;
+      }
+
+      .materi-placeholder-text {
+        color: var(--text-light);
+        text-align: center;
+        max-width: 80%;
+      }
+
+      .materi-buttons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .cta-section {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        color: white;
+        padding: 6rem 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-section::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+        animation: rotate 20s linear infinite;
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .cta-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .cta-section p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 2.5rem;
+        opacity: 0.9;
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Scroll indicator */
+      .scroll-indicator {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        color: var(--text-light);
+        animation: bounce 2s infinite;
+        z-index: 2;
+      }
+
+      .scroll-indicator p {
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+      }
+
+      .scroll-arrow {
+        font-size: 2rem;
+        transition: transform 0.3s ease;
+      }
+
+      .scroll-indicator:hover .scroll-arrow {
+        transform: translateY(5px);
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        40% {
+          transform: translateX(-50%) translateY(-10px);
+        }
+        60% {
+          transform: translateX(-50%) translateY(-5px);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Smooth scrolling for older browsers */
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .hero {
+          flex-direction: column;
+          text-align: center;
+          padding: 2rem 1rem;
+        }
+
+        .hero-content {
+          max-width: 100%;
+          text-align: center;
+        }
+
+        .demo-section {
+          max-width: 100%;
+          margin-top: 2rem;
+        }
+
+        .hero-buttons {
+          justify-content: center;
+        }
+
+        .materi-content {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .materi-text {
+          padding-right: 0;
+        }
+
+        .materi-section {
+          padding: 2rem;
+        }
+
+        header {
+          flex-direction: column;
+          gap: 1rem;
+          padding: 1rem;
+        }
+
+        .nav-center {
+          position: static;
+          transform: none;
+          order: 2;
+        }
+
+        .logo {
+          order: 1;
+        }
+
+        .nav-right {
+          order: 3;
+          margin-top: 1rem;
+        }
+
+        .hero h1 {
+          font-size: 2.2rem;
+        }
+
+        .hero p {
+          font-size: 1.1rem;
+        }
+
+        .hero-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .dropdown-content {
+          position: fixed;
+          left: 50%;
+          transform: translateX(-50%);
+          min-width: 200px;
+        }
+
+        .demo-placeholder,
+        .materi-placeholder {
+          width: 100%;
+          max-width: 300px;
+          height: 300px;
+        }
+
+        .materi-visual {
+          padding: 1.5rem;
+          margin-top: 1rem;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .nav-item {
+          margin: 0 0.5rem;
+          font-size: 0.9rem;
+        }
+
+        .hero h1 {
+          font-size: 1.8rem;
+        }
+
+        .materi-title {
+          font-size: 1.5rem;
+        }
+
+        .materi-section {
+          padding: 1.5rem;
+        }
+
+        .materi-buttons {
+          flex-direction: column;
+        }
+
+        .demo-placeholder,
+        .materi-placeholder {
+          height: 250px;
+        }
+
+        .placeholder-icon {
+          font-size: 3rem;
+        }
+
+        .materi-icon {
+          font-size: 2.5rem;
+        }
+
+        .btn-home {
+          padding: 0.4rem 1rem;
+          font-size: 0.8rem;
+        }
+
+        .materi-visual h3 {
+          font-size: 1.3rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">🔷 MathLearn</div>
+      <div class="nav-center">
+        <div class="dropdown">
+          <a class="nav-item">Materi ▼</a>
+          <div class="dropdown-content">
+            <a href="#materi-geometri">Geometri</a>
+            <a href="#materi-aljabar">Aljabar</a>
+            <a href="#materi-matriks">Matriks</a>
+            <a href="#materi-limit">Limit</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <a class="nav-item">Sarana Program ▼</a>
+          <div class="dropdown-content">
+            <a href="#">Tentang Kami</a>
+            <a href="#">Prinsip Panduan</a>
+            <a href="#">Latihan Tes</a>
+            <a href="#">Pengujing</a>
+            <a href="#">Aksesibilitas</a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-right">
+        <button class="btn-home" onclick="goToHome()">🏠 Home</button>
+      </div>
+    </header>
+    <div class="hero">
+      <div class="hero-content">
+        <h1>Platform Pembelajaran Matematika Interaktif</h1>
+        <p>Jelajahi konsep matematika dengan alat visual interaktif yang memudahkan pemahaman dan membuat belajar menjadi menyenangkan.</p>
+      </div>
+
+      <div class="scroll-indicator">
+        <p>Scroll ke bawah</p>
+        <div class="scroll-arrow">↓</div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Materi Sections -->
+    <div id="materi-sections" class="materi-sections">
+      <!-- Geometri Section -->
+      <div id="materi-geometri" class="materi-section">
+        <div class="materi-header">
+          <h2 class="materi-title">Geometri</h2>
+        </div>
+        <div class="materi-content">
+          <div class="materi-text">
+            <p>Geometri adalah cabang matematika yang mempelajari tentang sifat, hubungan, dan pengukuran dari titik, garis, sudut, permukaan, dan padatan. Dalam geometri, kita mempelajari bentuk dan ruang di sekitar kita.</p>
+            <p>Dengan alat geometri interaktif, Anda dapat mengeksplorasi berbagai konsep geometri dengan cara yang visual dan menarik.</p>
+            <div class="materi-buttons">
+              <a href="geometri.html" class="btn-secondary">contoh soal</a>
+            </div>
+          </div>
+          <div class="materi-visual">
+            <h3>Konsep Utama Geometri</h3>
+            <ul>
+              <li><strong>Bangun Datar:</strong> Segitiga, persegi, lingkaran, dan poligon lainnya</li>
+              <li><strong>Bangun Ruang:</strong> Kubus, balok, prisma, limas, dan bola</li>
+              <li><strong>Transformasi:</strong> Translasi, rotasi, refleksi, dan dilatasi</li>
+              <li><strong>Teorema Pythagoras:</strong> Hubungan sisi-sisi segitiga siku-siku</li>
+              <li><strong>Kesebangunan dan Kekongruenan:</strong> Perbandingan bentuk dan ukuran</li>
+              <li><strong>Trigonometri:</strong> Hubungan sudut dan sisi dalam segitiga</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div id="materi-sections" class="materi-sections">
+      <!-- Geometri Section -->
+      <div id="materi-geometri" class="materi-section">
+        <div class="materi-header">
+          <h2 class="materi-title">Aljabar</h2>
+        </div>
+        <div class="materi-content">
+          <div class="materi-text">
+            <p>Aljabar adalah cabang matematika yang menggunakan simbol dan huruf untuk merepresentasikan angka dan hubungan di antara mereka. Ini memungkinkan kita untuk menyelesaikan masalah dengan cara yang umum dan sistematis.</p>
+            <p>Pelajari konsep variabel, persamaan, fungsi, dan banyak lagi dengan alat bantu visual yang interaktif.</p>
+            <div class="materi-buttons">
+              <a href="aljabar.html" class="btn-secondary">contoh soal</a>
+            </div>
+          </div>
+          <div class="materi-visual">
+            <h3>Konsep Utama Aljabar</h3>
+            <ul>
+              <li><strong>Variabel dan Ekspresi:</strong> Simbol yang mewakili nilai tidak diketahui</li>
+              <li><strong>Persamaan Linear:</strong> Menyelesaikan persamaan dengan satu variabel</li>
+              <li><strong>Sistem Persamaan:</strong> Menyelesaikan beberapa persamaan sekaligus</li>
+              <li><strong>Fungsi:</strong> Hubungan antara input dan output</li>
+              <li><strong>Polinomial:</strong> Ekspresi dengan banyak suku</li>
+              <li><strong>Pertidaksamaan:</strong> Menyelesaikan ketidaksetaraan matematika</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div id="materi-sections" class="materi-sections">
+      <!-- Geometri Section -->
+      <div id="materi-geometri" class="materi-section">
+        <div class="materi-header">
+          <h2 class="materi-title">Kalkulus</h2>
+        </div>
+        <div class="materi-content">
+          <div class="materi-text">
+            <p>Kalkulus adalah cabang matematika yang mempelajari perubahan dan pergerakan. Terdiri dari diferensial dan integral, kalkulus membantu kita memahami laju perubahan dan akumulasi.</p>
+            <p>Dengan alat kalkulus interaktif, Anda dapat memvisualisasikan konsep limit, turunan, dan integral dengan cara yang mudah dipahami.</p>
+            <div class="materi-buttons">
+              <a href="kalkulus.html" class="btn-secondary">contoh soal</a>
+            </div>
+          </div>
+          <div class="materi-visual">
+            <h3>Konsep Utama Kalkulus</h3>
+            <ul>
+              <li><strong>Limit:</strong> Perilaku fungsi saat mendekati nilai tertentu</li>
+              <li><strong>Turunan:</strong> Laju perubahan sesaat suatu fungsi</li>
+              <li><strong>Integral:</strong> Akumulasi nilai dan luas di bawah kurva</li>
+              <li><strong>Teorema Dasar Kalkulus:</strong> Hubungan antara turunan dan integral</li>
+              <li><strong>Aplikasi Turunan:</strong> Maksimum-minimum dan optimasi</li>
+              <li><strong>Aplikasi Integral:</strong> Luas, volume, dan kerja</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+
+    <script>
+      // Fungsi untuk kembali ke halaman utama
+      function goToHome() {
+        // Jika halaman ini adalah halaman utama, scroll ke atas
+        if (window.location.pathname === "/" || window.location.pathname.endsWith("index.html")) {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        } else {
+          // Jika tidak, arahkan ke halaman utama
+          window.location.href = "index.html";
+        }
+      }
+
+      // Fungsi untuk scroll ke section
+      function scrollToSection(sectionId) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const offsetTop = element.getBoundingClientRect().top + window.pageYOffset;
+
+          window.scrollTo({
+            top: offsetTop - 80, // Offset untuk header
+            behavior: "smooth",
+          });
+        }
+      }
+
+      function openMateriDetail(materi) {
+        alert(`Membuka materi detail untuk: ${materi}`);
+        // Di sini bisa diarahkan ke halaman detail materi
+      }
+
+      function showExample(materi) {
+        alert(`Menampilkan contoh untuk: ${materi}`);
+        // Di sini bisa menampilkan contoh interaktif
+      }
+
+      // Intersection Observer untuk animasi scroll
+      function initScrollAnimations() {
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        };
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        }, observerOptions);
+
+        // Observasi materi sections
+        document.querySelectorAll(".materi-section").forEach((section) => {
+          sectionObserver.observe(section);
+        });
+      }
+
+      // Inisialisasi saat halaman dimuat
+      document.addEventListener("DOMContentLoaded", function () {
+        initScrollAnimations();
+
+        // Tambahkan smooth hover effects
+        document.querySelectorAll(".btn-primary, .btn-secondary, .btn-home").forEach((btn) => {
+          btn.addEventListener("mouseenter", function () {
+            this.style.transform = "translateY(-3px) scale(1.05)";
+          });
+
+          btn.addEventListener("mouseleave", function () {
+            this.style.transform = "translateY(0) scale(1)";
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

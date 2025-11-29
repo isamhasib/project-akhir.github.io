@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MathLearn - Matematika Gratis yang Menakjubkan</title>
+    <style>
+      :root {
+        --primary: #7b1fa2;
+        --primary-light: #9c27b0;
+        --primary-dark: #6a1b9a;
+        --secondary: #2196f3;
+        --text: #333;
+        --text-light: #666;
+        --bg: #ffffff;
+        --bg-light: #f8f9fa;
+        --border: #e0e0e0;
+        --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        --radius: 8px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", system-ui, sans-serif;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background: var(--bg);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        border-bottom: 1px solid var(--border);
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: transform 0.3s ease;
+      }
+
+      .logo:hover {
+        transform: scale(1.05);
+      }
+
+      .nav-center {
+        display: flex;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      /* Dropdown Styles */
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: var(--bg);
+        min-width: 180px;
+        box-shadow: var(--shadow);
+        border-radius: var(--radius);
+        z-index: 1000;
+        margin-top: 0.5rem;
+        overflow: hidden;
+        animation: dropdownFade 0.3s ease-out;
+      }
+
+      @keyframes dropdownFade {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      .dropdown-content a {
+        display: block;
+        padding: 0.75rem 1rem;
+        text-decoration: none;
+        color: var(--text);
+        border-bottom: 1px solid var(--border);
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        font-size: 0.9rem;
+      }
+
+      .dropdown-content a:hover {
+        background: var(--bg-light);
+        color: var(--primary);
+        padding-left: 1.25rem;
+        transform: translateX(5px);
+      }
+
+      .dropdown-content a:last-child {
+        border-bottom: none;
+      }
+
+      .nav-item {
+        margin: 0 1rem;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        font-weight: 500;
+        position: relative;
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        color: var(--text);
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .nav-item:hover {
+        color: var(--primary);
+        transform: translateY(-2px);
+      }
+
+      .nav-item::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary);
+        transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .nav-item:hover::after {
+        width: 100%;
+      }
+
+      .hero {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        padding: 4rem 2rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 20% 80%, rgba(123, 31, 162, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(33, 150, 243, 0.1) 0%, transparent 50%);
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .hero-content {
+        max-width: 50%;
+        position: relative;
+        z-index: 2;
+        text-align: left;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        color: var(--primary-dark);
+        font-weight: 700;
+        animation: titleEntrance 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+      }
+
+      @keyframes titleEntrance {
+        0% {
+          opacity: 0;
+          transform: translateY(30px) scale(0.9);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+        color: var(--text-light);
+        margin-bottom: 2.5rem;
+        max-width: 100%;
+        animation: textEntrance 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s both;
+      }
+
+      @keyframes textEntrance {
+        0% {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero-buttons {
+        display: flex;
+        justify-content: flex-start;
+        gap: 1rem;
+        margin-bottom: 3rem;
+        animation: buttonsEntrance 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s both;
+      }
+
+      @keyframes buttonsEntrance {
+        0% {
+          opacity: 0;
+          transform: translateY(50px) scale(0.95);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .btn-primary {
+        padding: 0.75rem 2rem;
+        font-size: 1.1rem;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        box-shadow: 0 4px 15px rgba(123, 31, 162, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-primary::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s;
+      }
+
+      .btn-primary:hover::before {
+        left: 100%;
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-dark);
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 8px 25px rgba(123, 31, 162, 0.4);
+      }
+
+      .btn-primary:active {
+        transform: translateY(-1px) scale(1.02);
+      }
+
+      .btn-secondary {
+        padding: 0.75rem 2rem;
+        font-size: 1.1rem;
+        background: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+        border-radius: 50px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-secondary::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 100%;
+        background: var(--primary);
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        z-index: -1;
+      }
+
+      .btn-secondary:hover::before {
+        width: 100%;
+      }
+
+      .btn-secondary:hover {
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(123, 31, 162, 0.3);
+      }
+
+      .demo-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        position: relative;
+        z-index: 2;
+        animation: demoEntrance 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s both;
+        max-width: 45%;
+      }
+
+      @keyframes demoEntrance {
+        0% {
+          opacity: 0;
+          transform: translateY(60px) rotateX(10deg);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) rotateX(0);
+        }
+      }
+
+      .demo-section p {
+        color: var(--text-light);
+        font-style: italic;
+        margin-bottom: 0;
+        font-size: 0.9rem;
+      }
+
+      canvas {
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        background: var(--bg);
+        cursor: pointer;
+        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transform: translateZ(0);
+      }
+
+      canvas:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .section-divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--border), transparent);
+        margin: 4rem 2rem;
+        opacity: 0;
+        animation: fadeIn 1s ease-in-out 1s forwards;
+      }
+
+      /* Materi Sections */
+      .materi-sections {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .materi-section {
+        margin-bottom: 4rem;
+        padding: 3rem;
+        background: var(--bg-light);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        opacity: 0;
+        transform: translateY(50px);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .materi-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(123, 31, 162, 0.05), transparent);
+        transition: left 0.6s ease;
+      }
+
+      .materi-section:hover::before {
+        left: 100%;
+      }
+
+      .materi-section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .materi-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+
+      .materi-title {
+        font-size: 2rem;
+        color: var(--primary-dark);
+        font-weight: 700;
+        position: relative;
+      }
+
+      .materi-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: var(--primary);
+        border-radius: 2px;
+        transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .materi-section:hover .materi-title::after {
+        width: 100px;
+      }
+
+      .materi-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .materi-text {
+        padding-right: 2rem;
+      }
+
+      .materi-text p {
+        font-size: 1.1rem;
+        color: var(--text-light);
+        margin-bottom: 1.5rem;
+        line-height: 1.7;
+        transition: transform 0.3s ease;
+      }
+
+      .materi-text p:hover {
+        transform: translateX(5px);
+      }
+
+      .materi-canvas {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .materi-buttons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      /* Features Section */
+      .features-section {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+        text-align: center;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .feature-card {
+        background: var(--bg);
+        padding: 2rem;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        transform: scaleX(0);
+        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .feature-card.visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .feature-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .feature-card:hover .feature-icon {
+        transform: scale(1.2) rotate(5deg);
+      }
+
+      .feature-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--primary-dark);
+        transition: color 0.3s ease;
+      }
+
+      .feature-card:hover .feature-title {
+        color: var(--primary);
+      }
+
+      .feature-description {
+        color: var(--text-light);
+        transition: transform 0.3s ease;
+      }
+
+      .feature-card:hover .feature-description {
+        transform: translateY(-2px);
+      }
+
+      .cta-section {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        color: white;
+        padding: 6rem 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-section::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+        animation: rotate 20s linear infinite;
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .cta-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .cta-section p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 2.5rem;
+        opacity: 0.9;
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Scroll indicator */
+      .scroll-indicator {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        color: var(--text-light);
+        animation: bounce 2s infinite;
+        z-index: 2;
+      }
+
+      .scroll-indicator p {
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+      }
+
+      .scroll-arrow {
+        font-size: 2rem;
+        transition: transform 0.3s ease;
+      }
+
+      .scroll-indicator:hover .scroll-arrow {
+        transform: translateY(5px);
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        40% {
+          transform: translateX(-50%) translateY(-10px);
+        }
+        60% {
+          transform: translateX(-50%) translateY(-5px);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Smooth scrolling for older browsers */
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .hero {
+          flex-direction: column;
+          text-align: center;
+          padding: 2rem 1rem;
+        }
+
+        .hero-content {
+          max-width: 100%;
+          text-align: center;
+        }
+
+        .demo-section {
+          max-width: 100%;
+          margin-top: 2rem;
+        }
+
+        .hero-buttons {
+          justify-content: center;
+        }
+
+        .materi-content {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .materi-text {
+          padding-right: 0;
+        }
+
+        .materi-section {
+          padding: 2rem;
+        }
+
+        header {
+          flex-direction: column;
+          gap: 1rem;
+          padding: 1rem;
+        }
+
+        .nav-center {
+          position: static;
+          transform: none;
+          order: 2;
+        }
+
+        .logo {
+          order: 1;
+        }
+
+        .hero h1 {
+          font-size: 2.2rem;
+        }
+
+        .hero p {
+          font-size: 1.1rem;
+        }
+
+        .hero-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .dropdown-content {
+          position: fixed;
+          left: 50%;
+          transform: translateX(-50%);
+          min-width: 200px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .nav-item {
+          margin: 0 0.5rem;
+          font-size: 0.9rem;
+        }
+
+        .hero h1 {
+          font-size: 1.8rem;
+        }
+
+        .materi-title {
+          font-size: 1.5rem;
+        }
+
+        .materi-section {
+          padding: 1.5rem;
+        }
+
+        .materi-buttons {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">🔷 MathLearn</div>
+      <div class="nav-center">
+        <div class="dropdown">
+          <a class="nav-item">Materi ▼</a>
+          <div class="dropdown-content">
+            <a href="#materi-geometri">Geometri</a>
+            <a href="#materi-aljabar">Aljabar</a>
+            <a href="#materi-matriks">Matriks</a>
+            <a href="#materi-limit">Limit</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <a class="nav-item">Sarana Program ▼</a>
+          <div class="dropdown-content">
+            <a href="#">Tentang Kami</a>
+            <a href="#">Prinsip Panduan</a>
+            <a href="#">Latihan Tes</a>
+            <a href="#">Pengujing</a>
+            <a href="#">Aksesibilitas</a>
+          </div>
+        </div>
+      </div>
+      <div style="width: 100px"></div>
+    </header>
+
+    <div class="hero">
+      <div class="hero-content">
+        <h1>Matematika gratis yang menakjubkan</h1>
+        <p>Di Desmos Studio, kami ingin membantu semua orang belajar matematika, menyukai matematika, dan berkembang bersama matematika.</p>
+
+        <div class="hero-buttons">
+          <button class="btn-primary" onclick="scrollToSection('features-section')">Jelajahi Sarana</button>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <p>Seret sebuah titik</p>
+        <canvas id="geoCanvas" width="400" height="400"></canvas>
+      </div>
+
+      <div class="scroll-indicator">
+        <p>Scroll ke bawah</p>
+        <div class="scroll-arrow">↓</div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Features Section from image 1 -->
+    <div id="features-section" class="features-section">
+      <h2>Jelajahi semua sarana matematika kami</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3 class="feature-title">Kalkulator Grafik</h3>
+          <p class="feature-description">Plot fungsi, data visual, dan persamaan dengan kalkulator grafik kami yang mudah digunakan.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📐</div>
+          <h3 class="feature-title">Geometri</h3>
+          <p class="feature-description">Buat konstruksi geometri, jelajahi transformasi, dan visualisasi konsep matematika.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🧮</div>
+          <h3 class="feature-title">Kalkulator Ilmiah</h3>
+          <p class="feature-description">Selesaikan perhitungan kompleks dengan kalkulator ilmiah yang lengkap dan akurat.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📈</div>
+          <h3 class="feature-title">Statistik & Probabilitas</h3>
+          <p class="feature-description">Analisis data, visualisasi distribusi, dan eksplorasi konsep probabilitas.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔢</div>
+          <h3 class="feature-title">Aljabar</h3>
+          <p class="feature-description">Selesaikan persamaan, faktorkan polinomial, dan jelajahi konsep aljabar secara visual.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">∞</div>
+          <h3 class="feature-title">Kalkulus</h3>
+          <p class="feature-description">Pelajari turunan, integral, dan limit dengan alat visualisasi yang interaktif.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Materi Sections -->
+    <div class="materi-sections">
+      <!-- Geometri Section -->
+      <div id="materi-geometri" class="materi-section">
+        <div class="materi-header">
+          <h2 class="materi-title">Geometri</h2>
+        </div>
+        <div class="materi-content">
+          <div class="materi-text">
+            <p>Geometri adalah cabang matematika yang mempelajari tentang sifat, hubungan, dan pengukuran dari titik, garis, sudut, permukaan, dan padatan. Dalam geometri, kita mempelajari bentuk dan ruang di sekitar kita.</p>
+            <p>Dengan alat geometri interaktif, Anda dapat mengeksplorasi berbagai konsep geometri dengan cara yang visual dan menarik.</p>
+            <div class="materi-buttons">
+              <a href="geometri.html" button class="btn-primary">Ketuk untuk materi</button></a>
+              <button class="btn-secondary">Lihat Contoh</button>
+            </div>
+          </div>
+          <div class="materi-canvas">
+            <canvas id="geometriCanvas" width="300" height="300"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Aljabar Section -->
+      <div id="materi-aljabar" class="materi-section">
+        <div class="materi-header">
+          <h2 class="materi-title">Aljabar</h2>
+        </div>
+        <div class="materi-content">
+          <div class="materi-text">
+            <p>Aljabar adalah cabang matematika yang menggunakan simbol dan huruf untuk merepresentasikan angka dan hubungan di antara mereka. Ini memungkinkan kita untuk menyelesaikan masalah dengan cara yang umum dan sistematis.</p>
+            <p>Pelajari konsep variabel, persamaan, fungsi, dan banyak lagi dengan alat bantu visual yang interaktif.</p>
+            <div class="materi-buttons">
+              <button class="btn-primary" onclick="openMateriDetail('aljabar')">Pelajari Lebih Lanjut</button>
+              <button class="btn-secondary" onclick="alert('Contoh Aljabar akan segera hadir')">Lihat Contoh</button>
+            </div>
+          </div>
+          <div class="materi-canvas">
+            <canvas id="aljabarCanvas" width="300" height="300"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Matriks Section -->
+      <div id="materi-matriks" class="materi-section">
+        <div class="materi-header">
+          <h2 class="materi-title">Matriks</h2>
+        </div>
+        <div class="materi-content">
+          <div class="materi-text">
+            <p>Matriks adalah susunan bilangan, simbol, atau ekspresi yang disusun dalam baris dan kolom membentuk susunan persegi panjang. Matriks digunakan untuk merepresentasikan dan memanipulasi data dalam berbagai bidang.</p>
+            <p>Eksplorasi transformasi linear, operasi matriks, dan aplikasinya dalam pemecahan masalah.</p>
+            <div class="materi-buttons">
+              <button class="btn-primary" onclick="openMateriDetail('matriks')">Pelajari Lebih Lanjut</button>
+              <button class="btn-secondary" onclick="alert('Contoh Matriks akan segera hadir')">Lihat Contoh</button>
+            </div>
+          </div>
+          <div class="materi-canvas">
+            <canvas id="matriksCanvas" width="300" height="300"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Limit Section -->
+      <div id="materi-limit" class="materi-section">
+        <div class="materi-header">
+          <h2 class="materi-title">Limit</h2>
+        </div>
+        <div class="materi-content">
+          <div class="materi-text">
+            <p>Limit adalah konsep fundamental dalam kalkulus yang menggambarkan perilaku suatu fungsi ketika inputnya mendekati suatu nilai tertentu. Konsep limit memungkinkan kita untuk mendefinisikan turunan dan integral.</p>
+            <p>Pahami konsep limit melalui visualisasi interaktif dan contoh-contoh yang jelas.</p>
+            <div class="materi-buttons">
+              <button class="btn-primary" onclick="openMateriDetail('limit')">Pelajari Lebih Lanjut</button>
+              <button class="btn-secondary" onclick="alert('Contoh Limit akan segera hadir')">Lihat Contoh</button>
+            </div>
+          </div>
+          <div class="materi-canvas">
+            <canvas id="limitCanvas" width="300" height="300"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- CTA Section -->
+    <div class="cta-section">
+      <h2>Siap untuk menjelajahi matematika?</h2>
+      <p>Bergabunglah dengan jutaan siswa dan guru yang menggunakan MathLearn untuk membuat matematika lebih mudah dipahami dan menyenangkan.</p>
+      <button class="btn-primary" style="background: white; color: var(--primary)">Mulai Sekarang</button>
+    </div>
+
+    <script>
+      // Kode JavaScript untuk kurva interaktif
+      class DragPoint {
+        constructor(x, y) {
+          this.x = x;
+          this.y = y;
+          this.radius = 10;
+          this.isDragging = false;
+        }
+        draw(ctx) {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fillStyle = "#8a2be2";
+          ctx.fill();
+          // Tambahkan outline untuk titik
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius + 2, 0, Math.PI * 2);
+          ctx.strokeStyle = "#ffffff";
+          ctx.lineWidth = 2;
+          ctx.stroke();
+        }
+        isInside(mx, my) {
+          return Math.hypot(mx - this.x, my - this.y) < this.radius;
+        }
+      }
+
+      // Inisialisasi canvas
+      const canvases = {
+        geoCanvas: document.getElementById("geoCanvas"),
+        geometriCanvas: document.getElementById("geometriCanvas"),
+        aljabarCanvas: document.getElementById("aljabarCanvas"),
+        matriksCanvas: document.getElementById("matriksCanvas"),
+        limitCanvas: document.getElementById("limitCanvas"),
+      };
+
+      const contexts = {};
+      const points = {};
+
+      // Buat context dan titik untuk setiap canvas
+      for (const [id, canvas] of Object.entries(canvases)) {
+        contexts[id] = canvas.getContext("2d");
+        points[id] = new DragPoint(canvas.width / 2, canvas.height / 2);
+      }
+
+      // Animasi untuk kurva
+      let animationId = null;
+      let animationTime = 0;
+
+      function drawGeometry(ctx, draggablePoint, type = "spiral", time = 0) {
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+        // Gambar grid background yang lebih terang
+        ctx.strokeStyle = "#f5f5f5";
+        ctx.lineWidth = 1;
+        for (let i = 0; i <= ctx.canvas.width; i += 25) {
+          ctx.beginPath();
+          ctx.moveTo(i, 0);
+          ctx.lineTo(i, ctx.canvas.height);
+          ctx.stroke();
+        }
+        for (let i = 0; i <= ctx.canvas.height; i += 25) {
+          ctx.beginPath();
+          ctx.moveTo(0, i);
+          ctx.lineTo(ctx.canvas.width, i);
+          ctx.stroke();
+        }
+
+        let cx = ctx.canvas.width / 2;
+        let cy = ctx.canvas.height / 2;
+
+        // Gambar sumbu koordinat yang lebih jelas
+        ctx.strokeStyle = "#dddddd";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(cx, 0);
+        ctx.lineTo(cx, ctx.canvas.height);
+        ctx.moveTo(0, cy);
+        ctx.lineTo(ctx.canvas.width, cy);
+        ctx.stroke();
+
+        let angle = Math.atan2(draggablePoint.y - cy, draggablePoint.x - cx);
+        let scale = Math.hypot(draggablePoint.x - cx, draggablePoint.y - cy) / 2;
+
+        // Gambar kurva berdasarkan tipe
+        ctx.beginPath();
+
+        if (type === "spiral") {
+          // Spiral Archimedes yang lebih halus
+          for (let t = 0; t < 15; t += 0.1) {
+            let r = scale * (t / 15);
+            let animatedAngle = t * 2 + angle + time * 0.02;
+            let x = cx + r * Math.cos(animatedAngle);
+            let y = cy + r * Math.sin(animatedAngle);
+            if (t === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+        } else if (type === "parabola") {
+          // Parabola untuk aljabar
+          for (let x = -cx / 2; x <= cx / 2; x += 2) {
+            let y = (x * x) / 80;
+            let plotX = cx + x;
+            let plotY = cy - y;
+            if (x === -cx / 2) ctx.moveTo(plotX, plotY);
+            else ctx.lineTo(plotX, plotY);
+          }
+        } else if (type === "sine") {
+          // Gelombang sinus untuk matriks
+          for (let x = 0; x <= ctx.canvas.width; x += 2) {
+            let y = Math.sin((x - cx) / 25) * 40 + cy;
+            if (x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+        } else if (type === "limit") {
+          // Kurva limit (sinc function)
+          for (let x = 10; x <= ctx.canvas.width - 10; x += 2) {
+            let normalizedX = (x - cx) / 25;
+            let y = cy + (40 * Math.sin(normalizedX)) / (normalizedX || 1);
+            if (x === 10) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+        }
+
+        ctx.strokeStyle = "#7b1fa2";
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        // Gambar titik yang bisa digerakkan
+        draggablePoint.draw(ctx);
+
+        // Tambahkan label koordinat
+        ctx.fillStyle = "#666";
+        ctx.font = "12px Arial";
+        ctx.fillText(`(${Math.round(draggablePoint.x - cx)}, ${Math.round(cy - draggablePoint.y)})`, draggablePoint.x + 15, draggablePoint.y - 15);
+      }
+
+      function addDragEvents(canvas, point, drawFunc, type = "spiral") {
+        canvas.onmousedown = (e) => {
+          let rect = canvas.getBoundingClientRect();
+          let x = e.clientX - rect.left;
+          let y = e.clientY - rect.top;
+          if (point.isInside(x, y)) point.isDragging = true;
+        };
+        canvas.onmousemove = (e) => {
+          if (point.isDragging) {
+            let rect = canvas.getBoundingClientRect();
+            point.x = e.clientX - rect.left;
+            point.y = e.clientY - rect.top;
+            drawFunc(type, animationTime);
+          }
+        };
+        canvas.onmouseup = () => (point.isDragging = false);
+        canvas.onmouseleave = () => (point.isDragging = false);
+      }
+
+      // Inisialisasi semua canvas
+      function initCanvases() {
+        // Mulai animasi
+        if (animationId) {
+          cancelAnimationFrame(animationId);
+        }
+
+        function animate() {
+          animationTime += 1;
+          drawGeometry(contexts.geoCanvas, points.geoCanvas, "spiral", animationTime);
+          drawGeometry(contexts.geometriCanvas, points.geometriCanvas, "spiral", animationTime);
+          drawGeometry(contexts.aljabarCanvas, points.aljabarCanvas, "parabola", animationTime);
+          drawGeometry(contexts.matriksCanvas, points.matriksCanvas, "sine", animationTime);
+          drawGeometry(contexts.limitCanvas, points.limitCanvas, "limit", animationTime);
+          animationId = requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // Tambahkan event listeners
+        addDragEvents(canvases.geoCanvas, points.geoCanvas, (type) => drawGeometry(contexts.geoCanvas, points.geoCanvas, type, animationTime), "spiral");
+        addDragEvents(canvases.geometriCanvas, points.geometriCanvas, (type) => drawGeometry(contexts.geometriCanvas, points.geometriCanvas, type, animationTime), "spiral");
+        addDragEvents(canvases.aljabarCanvas, points.aljabarCanvas, (type) => drawGeometry(contexts.aljabarCanvas, points.aljabarCanvas, type, animationTime), "parabola");
+        addDragEvents(canvases.matriksCanvas, points.matriksCanvas, (type) => drawGeometry(contexts.matriksCanvas, points.matriksCanvas, type, animationTime), "sine");
+        addDragEvents(canvases.limitCanvas, points.limitCanvas, (type) => drawGeometry(contexts.limitCanvas, points.limitCanvas, type, animationTime), "limit");
+      }
+
+      // Fungsi untuk scroll ke section
+      function scrollToSection(sectionId) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const offsetTop = element.getBoundingClientRect().top + window.pageYOffset;
+
+          window.scrollTo({
+            top: offsetTop - 80, // Offset untuk header
+            behavior: "smooth",
+          });
+        }
+      }
+
+      function openMateriDetail(materi) {
+        alert(`Membuka materi detail untuk: ${materi}`);
+        // Di sini bisa diarahkan ke halaman detail materi
+      }
+
+      // Intersection Observer untuk animasi scroll
+      function initScrollAnimations() {
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        };
+
+        const featureObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                entry.target.classList.add("visible");
+              }, index * 100);
+            }
+          });
+        }, observerOptions);
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        }, observerOptions);
+
+        // Observasi feature cards
+        document.querySelectorAll(".feature-card").forEach((card, index) => {
+          featureObserver.observe(card);
+        });
+
+        // Observasi materi sections
+        document.querySelectorAll(".materi-section").forEach((section) => {
+          sectionObserver.observe(section);
+        });
+      }
+
+      // Inisialisasi saat halaman dimuat
+      document.addEventListener("DOMContentLoaded", function () {
+        initCanvases();
+        initScrollAnimations();
+
+        // Tambahkan smooth hover effects
+        document.querySelectorAll(".btn-primary, .btn-secondary").forEach((btn) => {
+          btn.addEventListener("mouseenter", function () {
+            this.style.transform = "translateY(-3px) scale(1.05)";
+          });
+
+          btn.addEventListener("mouseleave", function () {
+            this.style.transform = "translateY(0) scale(1)";
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
