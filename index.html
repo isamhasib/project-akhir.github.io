@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MathLearn - Matematika Gratis yang Menakjubkan</title>
+    <title>Letslearn - Matematika Gratis yang Menakjubkan</title>
     <style>
       :root {
-        --primary: #7b1fa2;
-        --primary-light: #9c27b0;
-        --primary-dark: #6a1b9a;
+        --primary: #3e798b;
+        --primary-light: #575757;
+        --primary-dark: #575757;
         --secondary: #2196f3;
         --text: #333;
         --text-light: #666;
@@ -24,6 +24,9 @@
         padding: 0;
         box-sizing: border-box;
         font-family: "Segoe UI", system-ui, sans-serif;
+        transform: translateZ(0); /* Hardware acceleration */
+        backface-visibility: hidden;
+        perspective: 1000px;
       }
 
       body {
@@ -32,6 +35,7 @@
         line-height: 1.6;
         scroll-behavior: smooth;
         overflow-x: hidden;
+        scroll-padding-top: 80px; /* Account for fixed header */
       }
 
       header {
@@ -45,6 +49,7 @@
         z-index: 100;
         border-bottom: 1px solid var(--border);
         transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        will-change: transform, opacity;
       }
 
       .logo {
@@ -72,6 +77,7 @@
       .dropdown {
         position: relative;
         display: inline-block;
+        will-change: transform, opacity;
       }
 
       .dropdown-content {
@@ -97,6 +103,17 @@
         to {
           opacity: 1;
           transform: translateY(0);
+        }
+      }
+
+      @keyframes dropdownFadeOut {
+        from {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        to {
+          opacity: 0;
+          transform: translateY(-10px);
         }
       }
 
@@ -135,6 +152,7 @@
         color: var(--text);
         text-decoration: none;
         white-space: nowrap;
+        will-change: transform, opacity;
       }
 
       .nav-item:hover {
@@ -399,6 +417,7 @@
         transform: translateY(50px);
         position: relative;
         overflow: hidden;
+        will-change: transform, opacity;
       }
 
       .materi-section::before {
@@ -478,6 +497,21 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        background: var(--bg-light);
+        border-radius: var(--radius);
+        padding: 1rem;
+        box-shadow: var(--shadow);
+      }
+
+      .placeholder-canvas {
+        text-align: center;
+        padding: 2rem;
+        color: var(--text-light);
+      }
+
+      .placeholder-canvas h3 {
+        margin-bottom: 0.5rem;
+        color: var(--primary);
       }
 
       .materi-buttons {
@@ -486,24 +520,24 @@
         margin-top: 1.5rem;
       }
 
-      /* Features Section */
+      /* Features Section - DIKECILKAN */
       .features-section {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 4rem 2rem;
+        padding: 3rem 2rem; /* Dikurangi dari 4rem */
         text-align: center;
       }
 
       .features-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        margin-top: 3rem;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Dikecilkan dari 300px */
+        gap: 1.5rem; /* Dikecilkan dari 2rem */
+        margin-top: 2rem; /* Dikecilkan dari 3rem */
       }
 
       .feature-card {
         background: var(--bg);
-        padding: 2rem;
+        padding: 1.5rem; /* Dikecilkan dari 2rem */
         border-radius: var(--radius);
         box-shadow: var(--shadow);
         transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -511,6 +545,7 @@
         transform: translateY(30px) scale(0.95);
         position: relative;
         overflow: hidden;
+        will-change: transform, opacity;
       }
 
       .feature-card::before {
@@ -531,8 +566,8 @@
       }
 
       .feature-card:hover {
-        transform: translateY(-10px) scale(1.02);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        transform: translateY(-8px) scale(1.02); /* Dikurangi dari -10px */
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1); /* Dikurangi dari 15px 30px */
       }
 
       .feature-card:hover::before {
@@ -540,18 +575,18 @@
       }
 
       .feature-icon {
-        font-size: 3rem;
-        margin-bottom: 1rem;
+        font-size: 2.5rem; /* Dikecilkan dari 3rem */
+        margin-bottom: 0.8rem; /* Dikecilkan dari 1rem */
         transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       }
 
       .feature-card:hover .feature-icon {
-        transform: scale(1.2) rotate(5deg);
+        transform: scale(1.15) rotate(5deg); /* Dikurangi dari 1.2 */
       }
 
       .feature-title {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
+        font-size: 1.3rem; /* Dikecilkan dari 1.5rem */
+        margin-bottom: 0.8rem; /* Dikecilkan dari 1rem */
         color: var(--primary-dark);
         transition: color 0.3s ease;
       }
@@ -563,6 +598,8 @@
       .feature-description {
         color: var(--text-light);
         transition: transform 0.3s ease;
+        font-size: 0.9rem; /* Ditambahkan untuk ukuran font lebih kecil */
+        line-height: 1.5; /* Ditambahkan untuk jarak baris lebih rapat */
       }
 
       .feature-card:hover .feature-description {
@@ -665,6 +702,24 @@
         }
       }
 
+      /* BETTER SCROLLBAR FOR SMOOTH EXPERIENCE */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--primary);
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--primary-dark);
+      }
+
       /* Smooth scrolling for older browsers */
       @media (prefers-reduced-motion: reduce) {
         * {
@@ -743,6 +798,28 @@
           transform: translateX(-50%);
           min-width: 200px;
         }
+
+        /* Responsif untuk features section yang lebih kecil */
+        .features-grid {
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 1rem;
+        }
+
+        .feature-card {
+          padding: 1.25rem;
+        }
+
+        .feature-icon {
+          font-size: 2rem;
+        }
+
+        .feature-title {
+          font-size: 1.1rem;
+        }
+
+        .feature-description {
+          font-size: 0.85rem;
+        }
       }
 
       @media (max-width: 600px) {
@@ -766,12 +843,170 @@
         .materi-buttons {
           flex-direction: column;
         }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Gaya Footer yang Diperbarui */
+      .footer {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        color: white;
+        padding: 50px 0 20px;
+        margin-top: auto;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(33, 150, 243, 0.1) 0%, transparent 50%);
+      }
+
+      .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .footer-section h3 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .footer-section h3::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 50px;
+        height: 2px;
+        background-color: var(--secondary);
+      }
+
+      .footer-section p {
+        line-height: 1.6;
+        margin-bottom: 15px;
+        opacity: 0.9;
+      }
+
+      .footer-links {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-block;
+      }
+
+      .footer-links a:hover {
+        color: var(--secondary);
+        transform: translateX(5px);
+      }
+
+      .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .contact-item i {
+        color: var(--secondary);
+        margin-top: 3px;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        color: white;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .social-links a:hover {
+        background-color: var(--secondary);
+        transform: translateY(-5px);
+      }
+
+      .footer-bottom {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 40px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .footer-bottom p {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.9rem;
+      }
+
+      /* Responsif */
+      @media (max-width: 768px) {
+        .footer-container {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .footer-section h3::after {
+          left: 50%;
+          transform: translateX(-50%);
+        }
+
+        .contact-item {
+          justify-content: center;
+        }
+
+        .social-links {
+          justify-content: center;
+        }
       }
     </style>
+    <!-- Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   </head>
   <body>
     <header>
-      <div class="logo">🔷 MathLearn</div>
+      <div class="logo">Letslearn</div>
       <div class="nav-center">
         <div class="dropdown">
           <a class="nav-item">Materi ▼</a>
@@ -808,7 +1043,7 @@
       </div>
 
       <div class="demo-section">
-        <p>Seret sebuah titik</p>
+        <p>Seret titik untuk mengubah bentuk kurva</p>
         <canvas id="geoCanvas" width="400" height="400"></canvas>
       </div>
 
@@ -826,33 +1061,23 @@
       <div class="features-grid">
         <div class="feature-card">
           <div class="feature-icon">📊</div>
-          <h3 class="feature-title">Kalkulator Grafik</h3>
+          <h3 class="feature-title">Limit dasar</h3>
           <p class="feature-description">Plot fungsi, data visual, dan persamaan dengan kalkulator grafik kami yang mudah digunakan.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">📐</div>
-          <h3 class="feature-title">Geometri</h3>
+          <h3 class="feature-title">Geometri dasar</h3>
           <p class="feature-description">Buat konstruksi geometri, jelajahi transformasi, dan visualisasi konsep matematika.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">🧮</div>
-          <h3 class="feature-title">Kalkulator Ilmiah</h3>
-          <p class="feature-description">Selesaikan perhitungan kompleks dengan kalkulator ilmiah yang lengkap dan akurat.</p>
-        </div>
-        <div class="feature-card">
           <div class="feature-icon">📈</div>
-          <h3 class="feature-title">Statistik & Probabilitas</h3>
+          <h3 class="feature-title">Matriks dasar</h3>
           <p class="feature-description">Analisis data, visualisasi distribusi, dan eksplorasi konsep probabilitas.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">🔢</div>
-          <h3 class="feature-title">Aljabar</h3>
+          <h3 class="feature-title">Aljabar dasar</h3>
           <p class="feature-description">Selesaikan persamaan, faktorkan polinomial, dan jelajahi konsep aljabar secara visual.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">∞</div>
-          <h3 class="feature-title">Kalkulus</h3>
-          <p class="feature-description">Pelajari turunan, integral, dan limit dengan alat visualisasi yang interaktif.</p>
         </div>
       </div>
     </div>
@@ -871,12 +1096,15 @@
             <p>Geometri adalah cabang matematika yang mempelajari tentang sifat, hubungan, dan pengukuran dari titik, garis, sudut, permukaan, dan padatan. Dalam geometri, kita mempelajari bentuk dan ruang di sekitar kita.</p>
             <p>Dengan alat geometri interaktif, Anda dapat mengeksplorasi berbagai konsep geometri dengan cara yang visual dan menarik.</p>
             <div class="materi-buttons">
-              <a href="geometri.html" button class="btn-primary">Ketuk untuk materi</button></a>
+              <a href="geometri.html" class="btn-primary">Ketuk untuk materi</a>
               <button class="btn-secondary">Lihat Contoh</button>
             </div>
           </div>
           <div class="materi-canvas">
-            <canvas id="geometriCanvas" width="300" height="300"></canvas>
+            <div class="placeholder-canvas">
+              <h3>Visualisasi Geometri</h3>
+              <p>Gambar akan muncul di sini</p>
+            </div>
           </div>
         </div>
       </div>
@@ -891,12 +1119,15 @@
             <p>Aljabar adalah cabang matematika yang menggunakan simbol dan huruf untuk merepresentasikan angka dan hubungan di antara mereka. Ini memungkinkan kita untuk menyelesaikan masalah dengan cara yang umum dan sistematis.</p>
             <p>Pelajari konsep variabel, persamaan, fungsi, dan banyak lagi dengan alat bantu visual yang interaktif.</p>
             <div class="materi-buttons">
-              <button class="btn-primary" onclick="openMateriDetail('aljabar')">Pelajari Lebih Lanjut</button>
-              <button class="btn-secondary" onclick="alert('Contoh Aljabar akan segera hadir')">Lihat Contoh</button>
+              <a href="aljabar.html" class="btn-primary">Ketuk untuk materi</a>
+              <button class="btn-secondary">Lihat Contoh</button>
             </div>
           </div>
           <div class="materi-canvas">
-            <canvas id="aljabarCanvas" width="300" height="300"></canvas>
+            <div class="placeholder-canvas">
+              <h3>Visualisasi Aljabar</h3>
+              <p>Gambar akan muncul di sini</p>
+            </div>
           </div>
         </div>
       </div>
@@ -911,12 +1142,15 @@
             <p>Matriks adalah susunan bilangan, simbol, atau ekspresi yang disusun dalam baris dan kolom membentuk susunan persegi panjang. Matriks digunakan untuk merepresentasikan dan memanipulasi data dalam berbagai bidang.</p>
             <p>Eksplorasi transformasi linear, operasi matriks, dan aplikasinya dalam pemecahan masalah.</p>
             <div class="materi-buttons">
-              <button class="btn-primary" onclick="openMateriDetail('matriks')">Pelajari Lebih Lanjut</button>
-              <button class="btn-secondary" onclick="alert('Contoh Matriks akan segera hadir')">Lihat Contoh</button>
+              <a href="matriks.html" class="btn-primary">Ketuk untuk materi</a>
+              <button class="btn-secondary">Lihat Contoh</button>
             </div>
           </div>
           <div class="materi-canvas">
-            <canvas id="matriksCanvas" width="300" height="300"></canvas>
+            <div class="placeholder-canvas">
+              <h3>Visualisasi Matriks</h3>
+              <p>Gambar akan muncul di sini</p>
+            </div>
           </div>
         </div>
       </div>
@@ -931,12 +1165,15 @@
             <p>Limit adalah konsep fundamental dalam kalkulus yang menggambarkan perilaku suatu fungsi ketika inputnya mendekati suatu nilai tertentu. Konsep limit memungkinkan kita untuk mendefinisikan turunan dan integral.</p>
             <p>Pahami konsep limit melalui visualisasi interaktif dan contoh-contoh yang jelas.</p>
             <div class="materi-buttons">
-              <button class="btn-primary" onclick="openMateriDetail('limit')">Pelajari Lebih Lanjut</button>
-              <button class="btn-secondary" onclick="alert('Contoh Limit akan segera hadir')">Lihat Contoh</button>
+              <a href="limit.html" class="btn-primary">Ketuk untuk materi</a>
+              <button class="btn-secondary">Lihat Contoh</button>
             </div>
           </div>
           <div class="materi-canvas">
-            <canvas id="limitCanvas" width="300" height="300"></canvas>
+            <div class="placeholder-canvas">
+              <h3>Visualisasi Limit</h3>
+              <p>Gambar akan muncul di sini</p>
+            </div>
           </div>
         </div>
       </div>
@@ -944,15 +1181,68 @@
 
     <div class="section-divider"></div>
 
-    <!-- CTA Section -->
-    <div class="cta-section">
-      <h2>Siap untuk menjelajahi matematika?</h2>
-      <p>Bergabunglah dengan jutaan siswa dan guru yang menggunakan MathLearn untuk membuat matematika lebih mudah dipahami dan menyenangkan.</p>
-      <button class="btn-primary" style="background: white; color: var(--primary)">Mulai Sekarang</button>
-    </div>
+    <!-- Footer yang Diperbarui -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>Tentang MathLearn</h3>
+          <p>Kami adalah platform pembelajaran matematika yang berdedikasi untuk membantu semua orang belajar matematika dengan cara yang menyenangkan dan interaktif.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h3>Materi Pembelajaran</h3>
+          <ul class="footer-links">
+            <li><a href="#materi-geometri">Geometri</a></li>
+            <li><a href="#materi-aljabar">Aljabar</a></li>
+            <li><a href="#materi-matriks">Matriks</a></li>
+            <li><a href="#materi-limit">Limit</a></li>
+            <li><a href="#features-section">Kalkulator</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Sarana Belajar</h3>
+          <ul class="footer-links">
+            <li><a href="#">Kalkulator Grafik</a></li>
+            <li><a href="#">Geometri Interaktif</a></li>
+            <li><a href="#">Kalkulator Ilmiah</a></li>
+            <li><a href="#">Statistik & Probabilitas</a></li>
+            <li><a href="#">Kalkulus</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Kontak Kami</h3>
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <p>Jl. Pendidikan No. 123, Jakarta, Indonesia</p>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <p>+62 812-3456-7890</p>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <p>info@mathlearn.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2023 MathLearn. Semua Hak Dilindungi. | Platform Pembelajaran Matematika Interaktif</p>
+      </div>
+    </footer>
 
     <script>
-      // Kode JavaScript untuk kurva interaktif
+      // Kode JavaScript untuk kurva interaktif di header
       class DragPoint {
         constructor(x, y) {
           this.x = x;
@@ -963,7 +1253,7 @@
         draw(ctx) {
           ctx.beginPath();
           ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-          ctx.fillStyle = "#8a2be2";
+          ctx.fillStyle = "#3e798b";
           ctx.fill();
           // Tambahkan outline untuk titik
           ctx.beginPath();
@@ -978,135 +1268,189 @@
       }
 
       // Inisialisasi canvas
-      const canvases = {
-        geoCanvas: document.getElementById("geoCanvas"),
-        geometriCanvas: document.getElementById("geometriCanvas"),
-        aljabarCanvas: document.getElementById("aljabarCanvas"),
-        matriksCanvas: document.getElementById("matriksCanvas"),
-        limitCanvas: document.getElementById("limitCanvas"),
-      };
-
-      const contexts = {};
-      const points = {};
-
-      // Buat context dan titik untuk setiap canvas
-      for (const [id, canvas] of Object.entries(canvases)) {
-        contexts[id] = canvas.getContext("2d");
-        points[id] = new DragPoint(canvas.width / 2, canvas.height / 2);
-      }
+      const canvas = document.getElementById("geoCanvas");
+      const ctx = canvas.getContext("2d");
+      const point = new DragPoint(canvas.width / 2, canvas.height / 2);
 
       // Animasi untuk kurva
       let animationId = null;
       let animationTime = 0;
 
-      function drawGeometry(ctx, draggablePoint, type = "spiral", time = 0) {
-        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+      function drawGeometry(time = 0) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         // Gambar grid background yang lebih terang
         ctx.strokeStyle = "#f5f5f5";
         ctx.lineWidth = 1;
-        for (let i = 0; i <= ctx.canvas.width; i += 25) {
+        for (let i = 0; i <= canvas.width; i += 25) {
           ctx.beginPath();
           ctx.moveTo(i, 0);
-          ctx.lineTo(i, ctx.canvas.height);
+          ctx.lineTo(i, canvas.height);
           ctx.stroke();
         }
-        for (let i = 0; i <= ctx.canvas.height; i += 25) {
+        for (let i = 0; i <= canvas.height; i += 25) {
           ctx.beginPath();
           ctx.moveTo(0, i);
-          ctx.lineTo(ctx.canvas.width, i);
+          ctx.lineTo(canvas.width, i);
           ctx.stroke();
         }
 
-        let cx = ctx.canvas.width / 2;
-        let cy = ctx.canvas.height / 2;
+        let cx = canvas.width / 2;
+        let cy = canvas.height / 2;
 
         // Gambar sumbu koordinat yang lebih jelas
         ctx.strokeStyle = "#dddddd";
         ctx.lineWidth = 2;
         ctx.beginPath();
         ctx.moveTo(cx, 0);
-        ctx.lineTo(cx, ctx.canvas.height);
+        ctx.lineTo(cx, canvas.height);
         ctx.moveTo(0, cy);
-        ctx.lineTo(ctx.canvas.width, cy);
+        ctx.lineTo(canvas.width, cy);
         ctx.stroke();
 
-        let angle = Math.atan2(draggablePoint.y - cy, draggablePoint.x - cx);
-        let scale = Math.hypot(draggablePoint.x - cx, draggablePoint.y - cy) / 2;
+        let angle = Math.atan2(point.y - cy, point.x - cx);
+        let scale = Math.hypot(point.x - cx, point.y - cy) / 2;
 
-        // Gambar kurva berdasarkan tipe
+        // Gambar kurva spiral
         ctx.beginPath();
-
-        if (type === "spiral") {
-          // Spiral Archimedes yang lebih halus
-          for (let t = 0; t < 15; t += 0.1) {
-            let r = scale * (t / 15);
-            let animatedAngle = t * 2 + angle + time * 0.02;
-            let x = cx + r * Math.cos(animatedAngle);
-            let y = cy + r * Math.sin(animatedAngle);
-            if (t === 0) ctx.moveTo(x, y);
-            else ctx.lineTo(x, y);
-          }
-        } else if (type === "parabola") {
-          // Parabola untuk aljabar
-          for (let x = -cx / 2; x <= cx / 2; x += 2) {
-            let y = (x * x) / 80;
-            let plotX = cx + x;
-            let plotY = cy - y;
-            if (x === -cx / 2) ctx.moveTo(plotX, plotY);
-            else ctx.lineTo(plotX, plotY);
-          }
-        } else if (type === "sine") {
-          // Gelombang sinus untuk matriks
-          for (let x = 0; x <= ctx.canvas.width; x += 2) {
-            let y = Math.sin((x - cx) / 25) * 40 + cy;
-            if (x === 0) ctx.moveTo(x, y);
-            else ctx.lineTo(x, y);
-          }
-        } else if (type === "limit") {
-          // Kurva limit (sinc function)
-          for (let x = 10; x <= ctx.canvas.width - 10; x += 2) {
-            let normalizedX = (x - cx) / 25;
-            let y = cy + (40 * Math.sin(normalizedX)) / (normalizedX || 1);
-            if (x === 10) ctx.moveTo(x, y);
-            else ctx.lineTo(x, y);
-          }
+        for (let t = 0; t < 15; t += 0.1) {
+          let r = scale * (t / 15);
+          let animatedAngle = t * 2 + angle + time * 0.02;
+          let x = cx + r * Math.cos(animatedAngle);
+          let y = cy + r * Math.sin(animatedAngle);
+          if (t === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
         }
 
-        ctx.strokeStyle = "#7b1fa2";
+        ctx.strokeStyle = "#3e798b";
         ctx.lineWidth = 3;
         ctx.stroke();
 
         // Gambar titik yang bisa digerakkan
-        draggablePoint.draw(ctx);
+        point.draw(ctx);
 
         // Tambahkan label koordinat
         ctx.fillStyle = "#666";
         ctx.font = "12px Arial";
-        ctx.fillText(`(${Math.round(draggablePoint.x - cx)}, ${Math.round(cy - draggablePoint.y)})`, draggablePoint.x + 15, draggablePoint.y - 15);
+        ctx.fillText(`(${Math.round(point.x - cx)}, ${Math.round(cy - point.y)})`, point.x + 15, point.y - 15);
       }
 
-      function addDragEvents(canvas, point, drawFunc, type = "spiral") {
+      // ENHANCED SMOOTH SCROLLING FUNCTIONS
+      function scrollToSection(sectionId) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const headerHeight = document.querySelector("header").offsetHeight;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+
+          // Enhanced smooth scrolling dengan easing yang lebih natural
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+            block: "start",
+            inline: "nearest",
+          });
+        }
+      }
+
+      function addDragEvents() {
+        let isDragging = false;
+        let lastX = 0;
+        let lastY = 0;
+
         canvas.onmousedown = (e) => {
           let rect = canvas.getBoundingClientRect();
           let x = e.clientX - rect.left;
           let y = e.clientY - rect.top;
-          if (point.isInside(x, y)) point.isDragging = true;
-        };
-        canvas.onmousemove = (e) => {
-          if (point.isDragging) {
-            let rect = canvas.getBoundingClientRect();
-            point.x = e.clientX - rect.left;
-            point.y = e.clientY - rect.top;
-            drawFunc(type, animationTime);
+
+          if (point.isInside(x, y)) {
+            point.isDragging = true;
+            isDragging = true;
+            lastX = x;
+            lastY = y;
+
+            // Add active state styling
+            canvas.style.cursor = "grabbing";
+            canvas.style.transform = "scale(0.98)";
           }
         };
-        canvas.onmouseup = () => (point.isDragging = false);
-        canvas.onmouseleave = () => (point.isDragging = false);
+
+        canvas.onmousemove = (e) => {
+          if (point.isDragging && isDragging) {
+            let rect = canvas.getBoundingClientRect();
+            let x = e.clientX - rect.left;
+            let y = e.clientY - rect.top;
+
+            // Smoother movement dengan linear interpolation
+            const lerp = (start, end, factor) => start + (end - start) * factor;
+            point.x = lerp(point.x, x, 0.3);
+            point.y = lerp(point.y, y, 0.3);
+          }
+        };
+
+        canvas.onmouseup = () => {
+          point.isDragging = false;
+          isDragging = false;
+          canvas.style.cursor = "pointer";
+          canvas.style.transform = "scale(1)";
+        };
+
+        canvas.onmouseleave = () => {
+          point.isDragging = false;
+          isDragging = false;
+          canvas.style.cursor = "default";
+          canvas.style.transform = "scale(1)";
+        };
+
+        // Enhanced touch events
+        canvas.addEventListener(
+          "touchstart",
+          (e) => {
+            e.preventDefault();
+            let rect = canvas.getBoundingClientRect();
+            let touch = e.touches[0];
+            let x = touch.clientX - rect.left;
+            let y = touch.clientY - rect.top;
+
+            if (point.isInside(x, y)) {
+              point.isDragging = true;
+              isDragging = true;
+              lastX = x;
+              lastY = y;
+              canvas.style.transform = "scale(0.98)";
+            }
+          },
+          { passive: false }
+        );
+
+        canvas.addEventListener(
+          "touchmove",
+          (e) => {
+            e.preventDefault();
+            if (point.isDragging && isDragging) {
+              let rect = canvas.getBoundingClientRect();
+              let touch = e.touches[0];
+              let x = touch.clientX - rect.left;
+              let y = touch.clientY - rect.top;
+
+              // Smooth touch movement
+              const lerp = (start, end, factor) => start + (end - start) * factor;
+              point.x = lerp(point.x, x, 0.5);
+              point.y = lerp(point.y, y, 0.5);
+            }
+          },
+          { passive: false }
+        );
+
+        canvas.addEventListener("touchend", () => {
+          point.isDragging = false;
+          isDragging = false;
+          canvas.style.transform = "scale(1)";
+        });
       }
 
-      // Inisialisasi semua canvas
-      function initCanvases() {
+      // Inisialisasi canvas
+      function initCanvas() {
         // Mulai animasi
         if (animationId) {
           cancelAnimationFrame(animationId);
@@ -1114,35 +1458,14 @@
 
         function animate() {
           animationTime += 1;
-          drawGeometry(contexts.geoCanvas, points.geoCanvas, "spiral", animationTime);
-          drawGeometry(contexts.geometriCanvas, points.geometriCanvas, "spiral", animationTime);
-          drawGeometry(contexts.aljabarCanvas, points.aljabarCanvas, "parabola", animationTime);
-          drawGeometry(contexts.matriksCanvas, points.matriksCanvas, "sine", animationTime);
-          drawGeometry(contexts.limitCanvas, points.limitCanvas, "limit", animationTime);
+          drawGeometry(animationTime);
           animationId = requestAnimationFrame(animate);
         }
 
         animate();
 
         // Tambahkan event listeners
-        addDragEvents(canvases.geoCanvas, points.geoCanvas, (type) => drawGeometry(contexts.geoCanvas, points.geoCanvas, type, animationTime), "spiral");
-        addDragEvents(canvases.geometriCanvas, points.geometriCanvas, (type) => drawGeometry(contexts.geometriCanvas, points.geometriCanvas, type, animationTime), "spiral");
-        addDragEvents(canvases.aljabarCanvas, points.aljabarCanvas, (type) => drawGeometry(contexts.aljabarCanvas, points.aljabarCanvas, type, animationTime), "parabola");
-        addDragEvents(canvases.matriksCanvas, points.matriksCanvas, (type) => drawGeometry(contexts.matriksCanvas, points.matriksCanvas, type, animationTime), "sine");
-        addDragEvents(canvases.limitCanvas, points.limitCanvas, (type) => drawGeometry(contexts.limitCanvas, points.limitCanvas, type, animationTime), "limit");
-      }
-
-      // Fungsi untuk scroll ke section
-      function scrollToSection(sectionId) {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          const offsetTop = element.getBoundingClientRect().top + window.pageYOffset;
-
-          window.scrollTo({
-            top: offsetTop - 80, // Offset untuk header
-            behavior: "smooth",
-          });
-        }
+        addDragEvents();
       }
 
       function openMateriDetail(materi) {
@@ -1186,10 +1509,131 @@
         });
       }
 
+      // ENHANCED SMOOTH SCROLLING FOR ALL INTERNAL LINKS
+      function initSmoothScrolling() {
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute("href");
+            if (targetId === "#") return;
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              const headerHeight = document.querySelector("header").offsetHeight;
+              const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+              window.scrollTo({
+                top: targetPosition,
+                behavior: "smooth",
+                block: "start",
+              });
+
+              // Close dropdown jika terbuka (untuk mobile)
+              if (window.innerWidth <= 900) {
+                const dropdowns = document.querySelectorAll(".dropdown-content");
+                dropdowns.forEach((dropdown) => {
+                  dropdown.style.display = "none";
+                });
+              }
+            }
+          });
+        });
+      }
+
+      // IMPROVED HEADER SCROLL EFFECT
+      function initHeaderEffects() {
+        let lastScrollTop = 0;
+        const header = document.querySelector("header");
+
+        window.addEventListener(
+          "scroll",
+          function () {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Enhanced header effect dengan threshold yang lebih baik
+            if (scrollTop > 100) {
+              header.style.background = "rgba(255, 255, 255, 0.95)";
+              header.style.backdropFilter = "blur(10px)";
+              header.style.boxShadow = "0 4px 20px rgba(0, 0, 0, 0.1)";
+            } else {
+              header.style.background = "var(--bg)";
+              header.style.backdropFilter = "blur(0px)";
+              header.style.boxShadow = "none";
+            }
+
+            lastScrollTop = scrollTop;
+          },
+          { passive: true }
+        );
+      }
+
+      // ENHANCED DROPDOWN ANIMATIONS
+      function initDropdownAnimations() {
+        document.querySelectorAll(".dropdown").forEach((dropdown) => {
+          dropdown.addEventListener("mouseenter", function () {
+            const content = this.querySelector(".dropdown-content");
+            if (content) {
+              content.style.display = "block";
+              content.style.animation = "dropdownFade 0.3s ease-out";
+            }
+          });
+
+          dropdown.addEventListener("mouseleave", function () {
+            const content = this.querySelector(".dropdown-content");
+            if (content) {
+              content.style.animation = "dropdownFadeOut 0.2s ease-out";
+              setTimeout(() => {
+                if (!content.matches(":hover")) {
+                  content.style.display = "none";
+                }
+              }, 150);
+            }
+          });
+        });
+      }
+
+      // TOUCH-OPTIMIZED SMOOTH SCROLLING FOR MOBILE
+      function initTouchOptimizations() {
+        let touchStartY = 0;
+        document.addEventListener(
+          "touchstart",
+          function (e) {
+            touchStartY = e.touches[0].clientY;
+          },
+          { passive: true }
+        );
+      }
+
+      // PERFORMANCE OPTIMIZATION FOR SMOOTH ANIMATIONS
+      function initPerformanceOptimizations() {
+        let ticking = false;
+        function updateAnimations() {
+          // Update any scroll-based animations here
+          ticking = false;
+        }
+
+        window.addEventListener(
+          "scroll",
+          function () {
+            if (!ticking) {
+              requestAnimationFrame(updateAnimations);
+              ticking = true;
+            }
+          },
+          { passive: true }
+        );
+      }
+
       // Inisialisasi saat halaman dimuat
       document.addEventListener("DOMContentLoaded", function () {
-        initCanvases();
+        initCanvas();
         initScrollAnimations();
+        initSmoothScrolling();
+        initHeaderEffects();
+        initDropdownAnimations();
+        initTouchOptimizations();
+        initPerformanceOptimizations();
 
         // Tambahkan smooth hover effects
         document.querySelectorAll(".btn-primary, .btn-secondary").forEach((btn) => {
