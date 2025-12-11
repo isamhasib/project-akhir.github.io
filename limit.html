@@ -1020,13 +1020,7 @@
     <header>
       <div class="logo">Letstlearn</div>
       <div class="nav-center">
-        <div class="dropdown">
-          <a class="nav-item">Materi ▼</a>
-          <div class="dropdown-content">
-            <a href="#bentuk-aljabar">Bentuk Aljabar</a>
-            <a href="#operasi-aljabar">Operasi Aljabar</a>
-          </div>
-        </div>
+        <div class="dropdown"></div>
       </div>
       <div class="nav-right">
         <button class="btn-home" onclick="goToHome()">🏠 Home</button>
@@ -1048,77 +1042,230 @@
 
     <!-- Materi Sections -->
     <div id="materi-sections" class="materi-sections">
-      <!-- Bentuk Aljabar Section -->
-      <div id="bentuk-aljabar" class="materi-section">
+      <!-- Pengertian Limit Section -->
+      <div id="pengertian-limit" class="materi-section">
         <div class="materi-header">
-          <h2 class="materi-title">Bentuk Aljabar</h2>
+          <h2 class="materi-title">Pengertian Limit Fungsi</h2>
         </div>
         <div class="materi-content">
           <div class="materi-text">
             <p>
-              🧐 Bentuk Aljabar adalah ungkapan matematika yang terdiri dari kombinasi bilangan (konstanta) dan variabel (peubah) yang dihubungkan dengan tanda operasi hitung (penjumlahan, pengurangan, perkalian, atau pembagian). Inti dari
-              aljabar adalah menggunakan simbol (variabel) untuk merepresentasikan bilangan yang tidak diketahui atau mewakili sifat-sifat matematika secara umum. Aljabar digunakan untuk memodelkan situasi di dunia nyata, memecahkan
-              persamaan, dan menyederhanakan ekspresi.
+              <strong>📊 Limit</strong> adalah konsep fundamental dalam kalkulus yang menggambarkan perilaku suatu fungsi ketika variabel inputnya mendekati suatu nilai tertentu. Limit membantu kita memahami apa yang terjadi dengan fungsi
+              di sekitar titik tertentu, bahkan jika fungsi tersebut tidak terdefinisi di titik itu sendiri.
             </p>
-            <p>Untuk memahami sebuah ekspresi aljabar secara utuh, kita perlu mengidentifikasi empat komponen kuncinya.</p>
-            <div class="materi-buttons">
-              <a href="soal-limit1.html" class="btn-secondary">contoh soal</a>
-            </div>
-          </div>
-          <div class="materi-visual">
-            <h3>Bentuk-Bentuk Aljabar</h3>
-            <ul>
-              <li><strong>Variabel, contoh:</strong> x, y, a, b.</li>
-              <li><strong>Koefisien, contoh:</strong> 1, 2, 3, 4.</li>
-              <li><strong>Konstanta, contoh:</strong> -1, -2, -3, -4.</li>
-              <li><strong>Suku memiliki 3 jenis yaitu:</strong>Suku Tunggal ( Monomial ), Suku Dua ( Binomial ), Suku Tiga ( Trinomial ).</li>
-              <li><strong>Suku Tunggal ( Monomial ):</strong> 5x,3y<sup>2</sup></li>
-              <li><strong>Suku Dua ( Binomial ):</strong>a+2b,x<sup>2</sup>-4</li>
-              <li><strong>Suku Tiga ( Trinomial ):</strong> x<sup>2</sup>+5x-6</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="section-divider"></div>
-    <div id="materi-sections" class="materi-sections">
-      <!-- Aljabar Section -->
-      <div id="operasi-aljabar" class="materi-section">
-        <div class="materi-header">
-          <h2 class="materi-title">Operasi Aljabar</h2>
-        </div>
-        <div class="materi-content">
-          <div class="materi-text">
-            <h3>Dasar Operasi: Suku Sejenis dan Tidak Sejenis</h3>
-            <h4>A. Operasi suku sejenis</h4>
-            <p>
-              Suku Sejenis adalah suku-suku dalam ekspresi aljabar yang memiliki variabel dan pangkat variabel yang sama persis. Ini adalah kunci utama agar penjumlahan dan pengurangan dapat dilakukan. Contoh Suku Sejenis : 5x dan -12x
-              (variabel x berpangkat satu). 4a<sup>2</sup>b dan a<sup>2</sup> (variabel a<sup>2</sup>). 10 dan -7 (keduanya adalah konstanta).
-            </p>
-            <h4>A. Operasi suku tidak sejenis</h4>
-            <p>
-              Suku Tidak Sejenis adalah suku-suku yang memiliki perbedaan pada variabelnya atau pada pangkat variabelnya. Suku-suku ini tidak dapat dijumlahkan atau dikurangkan. Contoh Suku Tidak Sejenis : 3x dan 3y (variabelnya berbeda).
-              2p<sup>2</sup> dan 2p (pangkat variabelnya berbeda). 5 dan 5k (satu konstanta, satu memiliki variabel).
-            </p>
-            <div class="materi-buttons">
-              <a href="soal-limit2.html" class="btn-secondary">contoh soal</a>
-            </div>
-          </div>
-          <div class="materi-visual">
-            <h3>Operasi suku sejenis dan tidak sejenis</h3>
-            <ul>
-              <li><strong>Contoh operasi suku sejenis : </strong> (4p+5q-2) + (3p-q+8) = (4p+3p) + (5q-q) + (-2+8)<br>= 7p+4q+6</br></li>
-              <li><strong>Contoh operasi suku tidak sejenis : </strong> (10x-7y) - (3x+2y-1) = (10x-3x) + (-7y-2y)+1<br>= 7x-9y+1</br></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="section-divider"></div>
-    <div id="materi-sections" class="materi-sections">
-    </div>
-    <div class="section-divider"></div>
 
+            <div class="limit-notation">lim<sub>x→a</sub> f(x) = L</div>
+
+            <p>Dibaca: "Limit f(x) ketika x mendekati a adalah L"</p>
+
+            <div class="example-box">
+              <h4>Contoh Sederhana:</h4>
+              <p>Perhatikan fungsi f(x) = (x² - 1)/(x - 1)</p>
+              <p>Ketika x = 1, fungsi tidak terdefinisi (pembagian oleh nol).</p>
+              <p>Tapi limit ketika x mendekati 1 adalah:</p>
+              <div class="limit-notation">lim<sub>x→1</sub> (x² - 1)/(x - 1) = lim<sub>x→1</sub> (x + 1) = 2</div>
+            </div>
+
+            <div class="materi-buttons">
+              <button class="btn-primary" onclick="openMateriDetail('pengertian-limit')">Pelajari Lebih Lanjut</button>
+              <a href="soal-limit1.html" class="btn-secondary">Contoh Soal</a>
+            </div>
+          </div>
+          <div class="materi-visual">
+            <h3>Konsep Penting Limit</h3>
+            <ul>
+              <li><strong>Limit Kiri:</strong> f(x) ketika x mendekati dari kiri</li>
+              <li><strong>Limit Kanan:</strong> f(x) ketika x mendekati dari kanan</li>
+              <li><strong>Limit Ada:</strong> Jika limit kiri = limit kanan</li>
+              <li><strong>Limit Tak Hingga:</strong> f(x) → ∞ ketika x → a</li>
+              <li><strong>Limit di Tak Hingga:</strong> f(x) ketika x → ∞</li>
+            </ul>
+
+            <h3 style="margin-top: 20px">Notasi Limit</h3>
+            <ul>
+              <li>lim<sub>x→a</sub> f(x) = L</li>
+              <li>lim<sub>x→a⁺</sub> f(x) (limit kanan)</li>
+              <li>lim<sub>x→a⁻</sub> f(x) (limit kiri)</li>
+              <li>lim<sub>x→∞</sub> f(x)</li>
+              <li>lim<sub>x→-∞</sub> f(x)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- Sifat-Sifat Limit Section -->
+      <div id="sifat-limit" class="materi-section">
+        <div class="materi-header">
+          <h2 class="materi-title">Sifat-Sifat Limit</h2>
+        </div>
+        <div class="materi-content">
+          <div class="materi-text">
+            <p>
+              <strong>🔧 Sifat-sifat limit</strong> memungkinkan kita untuk menghitung limit dengan lebih mudah tanpa harus selalu menggunakan definisi formal. Sifat-sifat ini sangat berguna dalam penyelesaian soal-soal limit yang kompleks.
+            </p>
+
+            <h3>Sifat-Sifat Dasar:</h3>
+
+            <div class="example-box">
+              <h4>1. Sifat Penjumlahan/Pengurangan:</h4>
+              <div class="limit-notation">lim<sub>x→a</sub> [f(x) ± g(x)] = lim<sub>x→a</sub> f(x) ± lim<sub>x→a</sub> g(x)</div>
+            </div>
+
+            <div class="example-box">
+              <h4>2. Sifat Perkalian dengan Konstanta:</h4>
+              <div class="limit-notation">lim<sub>x→a</sub> [c·f(x)] = c·lim<sub>x→a</sub> f(x)</div>
+            </div>
+
+            <div class="example-box">
+              <h4>3. Sifat Perkalian:</h4>
+              <div class="limit-notation">lim<sub>x→a</sub> [f(x)·g(x)] = lim<sub>x→a</sub> f(x)·lim<sub>x→a</sub> g(x)</div>
+            </div>
+
+            <div class="materi-buttons">
+              <button class="btn-primary" onclick="openMateriDetail('sifat-limit')">Pelajari Sifat Lainnya</button>
+              <a href="soal-limit2.html" class="btn-secondary">Latihan Soal</a>
+            </div>
+          </div>
+          <div class="materi-visual">
+            <h3>Sifat Limit Lanjutan</h3>
+            <ul>
+              <li><strong>Sifat Pembagian:</strong> lim [f(x)/g(x)] = lim f(x) / lim g(x)</li>
+              <li><strong>Sifat Pangkat:</strong> lim [f(x)]ⁿ = [lim f(x)]ⁿ</li>
+              <li><strong>Sifat Akar:</strong> lim √f(x) = √lim f(x)</li>
+              <li><strong>Limit Fungsi Komposisi:</strong> lim f(g(x)) = f(lim g(x))</li>
+              <li><strong>Teorema Apit (Squeeze):</strong> Jika f(x) ≤ g(x) ≤ h(x) dan lim f(x) = lim h(x) = L, maka lim g(x) = L</li>
+            </ul>
+
+            <h3 style="margin-top: 20px">Limit Trigonometri Dasar</h3>
+            <ul>
+              <li>lim<sub>x→0</sub> sin(x)/x = 1</li>
+              <li>lim<sub>x→0</sub> tan(x)/x = 1</li>
+              <li>lim<sub>x→0</sub> (1 - cos(x))/x = 0</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- Limit Tak Hingga Section -->
+      <div id="limit-tak-hingga" class="materi-section">
+        <div class="materi-header">
+          <h2 class="materi-title">Limit Tak Hingga</h2>
+        </div>
+        <div class="materi-content">
+          <div class="materi-text">
+            <p>
+              <strong>∞ Limit Tak Hingga</strong> terjadi ketika nilai fungsi tumbuh tanpa batas (mendekati tak hingga) atau ketika variabel inputnya mendekati tak hingga. Konsep ini penting untuk memahami perilaku fungsi pada nilai-nilai
+              ekstrem.
+            </p>
+
+            <h3>Jenis Limit Tak Hingga:</h3>
+
+            <div class="example-box">
+              <h4>1. Fungsi Mendekati Tak Hingga:</h4>
+              <div class="limit-notation">lim<sub>x→a</sub> f(x) = ∞</div>
+              <p>Contoh: lim<sub>x→0</sub> 1/x² = ∞</p>
+            </div>
+
+            <div class="example-box">
+              <h4>2. Variabel Mendekati Tak Hingga:</h4>
+              <div class="limit-notation">lim<sub>x→∞</sub> f(x) = L</div>
+              <p>Contoh: lim<sub>x→∞</sub> (2x+1)/(x+3) = 2</p>
+            </div>
+
+            <div class="example-box">
+              <h4>3. Bentuk Tak Tentu:</h4>
+              <p>∞/∞, 0/0, ∞ - ∞, 0·∞, 1<sup>∞</sup>, 0<sup>0</sup>, ∞<sup>0</sup></p>
+            </div>
+
+            <div class="materi-buttons">
+              <button class="btn-primary" onclick="showLimitTakHingga()">Visualisasi</button>
+              <a href="soal-limit3.html" class="btn-secondary">Soal Limit Tak Hingga</a>
+            </div>
+          </div>
+          <div class="materi-visual">
+            <h3>Strategi Penyelesaian</h3>
+            <ul>
+              <li><strong>Bentuk 0/0:</strong> Gunakan pemfaktoran atau L'Hôpital</li>
+              <li><strong>Bentuk ∞/∞:</strong> Bagi dengan pangkat tertinggi</li>
+              <li><strong>Bentuk ∞ - ∞:</strong> Rasionalisasi atau faktorkan</li>
+              <li><strong>Limit di Tak Hingga:</strong> Perhatikan koefisien pangkat tertinggi</li>
+            </ul>
+
+            <h3 style="margin-top: 20px">Contoh Penyelesaian</h3>
+            <ul>
+              <li>lim<sub>x→∞</sub> (3x²+2x+1)/(2x²-x+3) = 3/2</li>
+              <li>lim<sub>x→0</sub> sin(3x)/x = 3</li>
+              <li>lim<sub>x→1</sub> (x²-1)/(x-1) = 2</li>
+              <li>lim<sub>x→∞</sub> √(x²+1) - x = 0</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- Kontinuitas Section -->
+      <div id="kontinuitas" class="materi-section">
+        <div class="materi-header">
+          <h2 class="materi-title">Kontinuitas Fungsi</h2>
+        </div>
+        <div class="materi-content">
+          <div class="materi-text">
+            <p><strong>📈 Kontinuitas</strong> adalah konsep yang terkait erat dengan limit. Suatu fungsi dikatakan kontinu di suatu titik jika limitnya ada di titik tersebut dan sama dengan nilai fungsi di titik itu.</p>
+
+            <h3>Syarat Kontinuitas di titik x = a:</h3>
+
+            <div class="example-box">
+              <h4>1. f(a) terdefinisi</h4>
+              <p>Fungsi memiliki nilai di titik a</p>
+            </div>
+
+            <div class="example-box">
+              <h4>2. lim<sub>x→a</sub> f(x) ada</h4>
+              <p>Limit kiri = limit kanan</p>
+            </div>
+
+            <div class="example-box">
+              <h4>3. lim<sub>x→a</sub> f(x) = f(a)</h4>
+              <p>Limit sama dengan nilai fungsi</p>
+            </div>
+
+            <h3>Jenis Diskontinuitas:</h3>
+            <ul>
+              <li><strong>Diskontinuitas Removable:</strong> Dapat "diperbaiki" dengan mendefinisikan ulang</li>
+              <li><strong>Diskontinuitas Jump:</strong> Terjadi lompatan nilai</li>
+              <li><strong>Diskontinuitas Infinite:</strong> Mendekati tak hingga</li>
+            </ul>
+
+            <div class="materi-buttons">
+              <button class="btn-primary" onclick="showContinuityExamples()">Contoh Kontinuitas</button>
+              <a href="soal-kontinuitas.html" class="btn-secondary">Soal Kontinuitas</a>
+            </div>
+          </div>
+          <div class="materi-visual">
+            <h3>Sifat Fungsi Kontinu</h3>
+            <ul>
+              <li>Jumlah fungsi kontinu adalah kontinu</li>
+              <li>Perkalian fungsi kontinu adalah kontinu</li>
+              <li>Pembagian fungsi kontinu (selama penyebut ≠ 0)</li>
+              <li>Komposisi fungsi kontinu adalah kontinu</li>
+              <li>Fungsi polinomial kontinu di seluruh ℝ</li>
+              <li>Fungsi rasional kontinu di domainnya</li>
+            </ul>
+
+            <h3 style="margin-top: 20px">Teorema Penting</h3>
+            <ul>
+              <li><strong>Teorema Nilai Antara:</strong> Jika f kontinu pada [a,b] dan k antara f(a) dan f(b), maka ∃ c ∈ (a,b) sehingga f(c) = k</li>
+              <li><strong>Teorema Nilai Ekstrem:</strong> Fungsi kontinu pada interval tertutup mencapai maksimum dan minimum</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Footer yang Diperbarui -->
     <footer class="footer">
       <div id="footer" class="footer-container">

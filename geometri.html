@@ -68,7 +68,6 @@
         transform: translateX(-50%);
       }
 
-      /* Dropdown Styles */
       .dropdown {
         position: relative;
         display: inline-block;
@@ -410,13 +409,6 @@
         }
       }
 
-      .demo-section p {
-        color: var(--text-light);
-        font-style: italic;
-        margin-bottom: 0;
-        font-size: 0.9rem;
-      }
-
       .demo-placeholder {
         width: 400px;
         height: 400px;
@@ -457,7 +449,6 @@
         animation: fadeIn 1s ease-in-out 1s forwards;
       }
 
-      /* Materi Sections */
       .materi-sections {
         max-width: 1200px;
         margin: 0 auto;
@@ -531,7 +522,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 2rem;
-        align-items: center;
+        align-items: start;
       }
 
       .materi-text {
@@ -553,24 +544,41 @@
       .materi-visual {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: flex-start;
         padding: 2rem;
         background: rgba(123, 31, 162, 0.05);
         border-radius: var(--radius);
         border-left: 4px solid var(--primary);
+        height: 100%;
       }
 
       .materi-visual h3 {
         font-size: 1.5rem;
         color: var(--primary-dark);
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
         font-weight: 600;
+        width: 100%;
+      }
+
+      .materi-visual h4 {
+        margin-top: 1.5rem;
+        margin-bottom: 0.8rem;
+        color: var(--primary);
+        width: 100%;
+      }
+
+      .materi-visual p {
+        margin-bottom: 1rem;
+        color: var(--text-light);
+        line-height: 1.6;
+        width: 100%;
       }
 
       .materi-visual ul {
         list-style-type: none;
         padding-left: 0;
+        width: 100%;
       }
 
       .materi-visual li {
@@ -579,6 +587,7 @@
         position: relative;
         color: var(--text-light);
         line-height: 1.6;
+        width: 100%;
       }
 
       .materi-visual li:before {
@@ -614,16 +623,10 @@
         margin-bottom: 1rem;
       }
 
-      .materi-placeholder-text {
-        color: var(--text-light);
-        text-align: center;
-        max-width: 80%;
-      }
-
       .materi-buttons {
         display: flex;
         gap: 1rem;
-        margin-top: 1.5rem;
+        margin-top: 2rem;
       }
 
       .cta-section {
@@ -655,23 +658,6 @@
         }
       }
 
-      .cta-section h2 {
-        font-size: 2.5rem;
-        margin-bottom: 1.5rem;
-        position: relative;
-        z-index: 2;
-      }
-
-      .cta-section p {
-        font-size: 1.2rem;
-        max-width: 700px;
-        margin: 0 auto 2.5rem;
-        opacity: 0.9;
-        position: relative;
-        z-index: 2;
-      }
-
-      /* Scroll indicator */
       .scroll-indicator {
         position: absolute;
         bottom: 30px;
@@ -721,7 +707,7 @@
           opacity: 1;
         }
       }
-      /* Gaya Footer yang Diperbarui */
+
       .footer {
         background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
         color: white;
@@ -852,13 +838,32 @@
         font-size: 0.9rem;
       }
 
-      /* Smooth scrolling for older browsers */
-      @media (prefers-reduced-motion: reduce) {
-        * {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.01ms !important;
-        }
+      .transformasi-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+
+      .transformasi-table th,
+      .transformasi-table td {
+        padding: 8px 12px;
+        border: 1px solid var(--border);
+        text-align: left;
+      }
+
+      .transformasi-table th {
+        background-color: rgba(123, 31, 162, 0.1);
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      .transformasi-table tr:nth-child(even) {
+        background-color: rgba(0, 0, 0, 0.02);
+      }
+
+      .transformasi-table tr:hover {
+        background-color: rgba(123, 31, 162, 0.05);
       }
 
       @media (max-width: 900px) {
@@ -948,7 +953,6 @@
           margin-top: 1rem;
         }
 
-        /* Responsif untuk footer */
         .footer-container {
           grid-template-columns: 1fr;
           text-align: center;
@@ -1011,27 +1015,30 @@
         .materi-visual h3 {
           font-size: 1.3rem;
         }
+
+        .transformasi-table {
+          font-size: 0.8rem;
+        }
+
+        .transformasi-table th,
+        .transformasi-table td {
+          padding: 6px 8px;
+        }
       }
     </style>
-    <!-- Font Awesome untuk ikon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   </head>
   <body>
     <header>
       <div class="logo">Letstlearn</div>
       <div class="nav-center">
-        <div class="dropdown">
-          <a class="nav-item">Materi ▼</a>
-          <div class="dropdown-content">
-            <a href="#bentuk-aljabar">Bentuk Aljabar</a>
-            <a href="#operasi-aljabar">Operasi Aljabar</a>
-          </div>
-        </div>
+        <div class="dropdown"></div>
       </div>
       <div class="nav-right">
         <button class="btn-home" onclick="goToHome()">🏠 Home</button>
       </div>
     </header>
+
     <div class="hero">
       <div class="hero-content">
         <h1>Platform Math Materi Aljabar</h1>
@@ -1046,80 +1053,108 @@
 
     <div class="section-divider"></div>
 
-    <!-- Materi Sections -->
     <div id="materi-sections" class="materi-sections">
-      <!-- Bentuk Aljabar Section -->
-      <div id="bentuk-aljabar" class="materi-section">
+      <!-- BAGIAN TRANSFORMASI GEOMETRI YANG DIPERBAIKI -->
+      <div id="transformasi-geometri" class="materi-section">
         <div class="materi-header">
-          <h2 class="materi-title">Bentuk Aljabar</h2>
+          <h2 class="materi-title">Transformasi Geometri</h2>
         </div>
         <div class="materi-content">
           <div class="materi-text">
             <p>
-              🧐 Bentuk Aljabar adalah ungkapan matematika yang terdiri dari kombinasi bilangan (konstanta) dan variabel (peubah) yang dihubungkan dengan tanda operasi hitung (penjumlahan, pengurangan, perkalian, atau pembagian). Inti dari
-              aljabar adalah menggunakan simbol (variabel) untuk merepresentasikan bilangan yang tidak diketahui atau mewakili sifat-sifat matematika secara umum. Aljabar digunakan untuk memodelkan situasi di dunia nyata, memecahkan
-              persamaan, dan menyederhanakan ekspresi.
+              <strong>Transformasi Geometri</strong> adalah perubahan posisi atau bentuk suatu objek geometri (titik, garis, atau bangun datar) melalui operasi matematis tertentu. Transformasi ini mempertahankan sifat-sifat geometris
+              seperti kesebangunan atau kekongruenan, dan digunakan untuk mempelajari pergerakan, simetri, serta hubungan spasial dalam bidang koordinat.
             </p>
-            <p>Untuk memahami sebuah ekspresi aljabar secara utuh, kita perlu mengidentifikasi empat komponen kuncinya.</p>
+
+            <p>Ada empat jenis transformasi utama: translasi, refleksi, rotasi, dan dilatasi. Masing-masing memiliki aturan dan aplikasi yang berbeda dalam menyelesaikan masalah geometri.</p>
+
+            <p>
+              Transformasi geometri sangat penting dalam berbagai aplikasi seperti grafika komputer, desain arsitektur, animasi, dan pemetaan. Dengan memahami konsep ini, siswa dapat mengembangkan kemampuan spasial dan analitis yang berguna
+              dalam pemecahan masalah matematika dan dunia nyata.
+            </p>
+
             <div class="materi-buttons">
-              <a href="soal-geometri1.html" class="btn-secondary">contoh soal</a>
+              <a href="soal_geometri1.html" class="btn-secondary">contoh soal</a>
             </div>
           </div>
+
           <div class="materi-visual">
-            <h3>Bentuk-Bentuk Aljabar</h3>
+            <h3>Jenis-Jenis Transformasi Geometri</h3>
+
+            <h4>A. TRANSLASI (Pergeseran)</h4>
+            <p>Translasi adalah pergeseran titik atau bangun sejauh vektor tertentu tanpa mengubah bentuk dan ukuran.</p>
             <ul>
-              <li><strong>Variabel, contoh:</strong> x, y, a, b.</li>
-              <li><strong>Koefisien, contoh:</strong> 1, 2, 3, 4.</li>
-              <li><strong>Konstanta, contoh:</strong> -1, -2, -3, -4.</li>
-              <li><strong>Suku memiliki 3 jenis yaitu:</strong>Suku Tunggal ( Monomial ), Suku Dua ( Binomial ), Suku Tiga ( Trinomial ).</li>
-              <li><strong>Suku Tunggal ( Monomial ):</strong> 5x,3y<sup>2</sup></li>
-              <li><strong>Suku Dua ( Binomial ):</strong>a+2b,x<sup>2</sup>-4</li>
-              <li><strong>Suku Tiga ( Trinomial ):</strong> x<sup>2</sup>+5x-6</li>
+              <li>
+                <strong>Rumus Translasi:</strong><br />
+                Jika titik A(x, y) ditranslasi oleh vektor T = (a, b), maka:<br />
+                <strong>A'(x', y') = (x + a, y + b)</strong>
+              </li>
+            </ul>
+
+            <h4>B. REFLEKSI (Pencerminan)</h4>
+            <p>Refleksi adalah transformasi yang menghasilkan bayangan seperti cermin terhadap garis atau titik tertentu.</p>
+            <ul>
+              <li><strong>Rumus-rumus Refleksi:</strong></li>
+            </ul>
+            <table class="transformasi-table">
+              <thead>
+                <tr>
+                  <th>Garis Refleksi</th>
+                  <th>Rumus</th>
+                  <th>Penjelasan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Sumbu X</td>
+                  <td>(x, y) → (x, –y)</td>
+                  <td>y berubah tanda</td>
+                </tr>
+                <tr>
+                  <td>Sumbu Y</td>
+                  <td>(x, y) → (–x, y)</td>
+                  <td>x berubah tanda</td>
+                </tr>
+                <tr>
+                  <td>Garis y = x</td>
+                  <td>(x, y) → (y, x)</td>
+                  <td>tukar posisi</td>
+                </tr>
+                <tr>
+                  <td>Garis y = –x</td>
+                  <td>(x, y) → (–y, –x)</td>
+                  <td>tukar & ubah tanda</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4>C. ROTASI (Perputaran)</h4>
+            <p>Rotasi adalah perputaran titik atau bangun terhadap pusat rotasi dengan sudut tertentu.</p>
+            <ul>
+              <li>
+                <strong>Rumus Rotasi:</strong><br />
+                Rotasi dengan pusat (0,0) dan sudut θ:<br />
+                <strong>A'(x', y') = (x cos θ - y sin θ, x sin θ + y cos θ)</strong>
+              </li>
+            </ul>
+
+            <h4>D. DILATASI (Perkalian)</h4>
+            <p>Dilatasi adalah transformasi yang mengubah ukuran bangun dengan faktor skala tertentu.</p>
+            <ul>
+              <li>
+                <strong>Rumus Dilatasi:</strong><br />
+                Jika titik A(x, y) didilatasi dengan pusat (0,0) dan faktor skala k:<br />
+                <strong>A'(x', y') = (k·x, k·y)</strong>
+              </li>
             </ul>
           </div>
         </div>
       </div>
+      <!-- END BAGIAN TRANSFORMASI GEOMETRI -->
     </div>
-    <div class="section-divider"></div>
-    <div id="materi-sections" class="materi-sections">
-      <!-- Aljabar Section -->
-      <div id="operasi-aljabar" class="materi-section">
-        <div class="materi-header">
-          <h2 class="materi-title">Operasi Aljabar</h2>
-        </div>
-        <div class="materi-content">
-          <div class="materi-text">
-            <h3>Dasar Operasi: Suku Sejenis dan Tidak Sejenis</h3>
-            <h4>A. Operasi suku sejenis</h4>
-            <p>
-              Suku Sejenis adalah suku-suku dalam ekspresi aljabar yang memiliki variabel dan pangkat variabel yang sama persis. Ini adalah kunci utama agar penjumlahan dan pengurangan dapat dilakukan. Contoh Suku Sejenis : 5x dan -12x
-              (variabel x berpangkat satu). 4a<sup>2</sup>b dan a<sup>2</sup> (variabel a<sup>2</sup>). 10 dan -7 (keduanya adalah konstanta).
-            </p>
-            <h4>A. Operasi suku tidak sejenis</h4>
-            <p>
-              Suku Tidak Sejenis adalah suku-suku yang memiliki perbedaan pada variabelnya atau pada pangkat variabelnya. Suku-suku ini tidak dapat dijumlahkan atau dikurangkan. Contoh Suku Tidak Sejenis : 3x dan 3y (variabelnya berbeda).
-              2p<sup>2</sup> dan 2p (pangkat variabelnya berbeda). 5 dan 5k (satu konstanta, satu memiliki variabel).
-            </p>
-            <div class="materi-buttons">
-              <a href="soal-geometri2.html" class="btn-secondary">contoh soal</a>
-            </div>
-          </div>
-          <div class="materi-visual">
-            <h3>Operasi suku sejenis dan tidak sejenis</h3>
-            <ul>
-              <li><strong>Contoh operasi suku sejenis : </strong> (4p+5q-2) + (3p-q+8) = (4p+3p) + (5q-q) + (-2+8)<br>= 7p+4q+6</br></li>
-              <li><strong>Contoh operasi suku tidak sejenis : </strong> (10x-7y) - (3x+2y-1) = (10x-3x) + (-7y-2y)+1<br>= 7x-9y+1</br></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="section-divider"></div>
-    <div id="materi-sections" class="materi-sections">
-    </div>
+
     <div class="section-divider"></div>
 
-    <!-- Footer yang Diperbarui -->
     <footer class="footer">
       <div id="footer" class="footer-container">
         <div class="footer-section">
@@ -1164,44 +1199,28 @@
     </footer>
 
     <script>
-      // Fungsi untuk kembali ke halaman utama
       function goToHome() {
-        // Jika halaman ini adalah halaman utama, scroll ke atas
         if (window.location.pathname === "/" || window.location.pathname.endsWith("index.html")) {
           window.scrollTo({
             top: 0,
             behavior: "smooth",
           });
         } else {
-          // Jika tidak, arahkan ke halaman utama
           window.location.href = "index.html";
         }
       }
 
-      // Fungsi untuk scroll ke section
       function scrollToSection(sectionId) {
         const element = document.getElementById(sectionId);
         if (element) {
           const offsetTop = element.getBoundingClientRect().top + window.pageYOffset;
-
           window.scrollTo({
-            top: offsetTop - 80, // Offset untuk header
+            top: offsetTop - 80,
             behavior: "smooth",
           });
         }
       }
 
-      function openMateriDetail(materi) {
-        alert(`Membuka materi detail untuk: ${materi}`);
-        // Di sini bisa diarahkan ke halaman detail materi
-      }
-
-      function showExample(materi) {
-        alert(`Menampilkan contoh untuk: ${materi}`);
-        // Di sini bisa menampilkan contoh interaktif
-      }
-
-      // Intersection Observer untuk animasi scroll
       function initScrollAnimations() {
         const observerOptions = {
           threshold: 0.1,
@@ -1216,17 +1235,14 @@
           });
         }, observerOptions);
 
-        // Observasi materi sections
         document.querySelectorAll(".materi-section").forEach((section) => {
           sectionObserver.observe(section);
         });
       }
 
-      // Inisialisasi saat halaman dimuat
       document.addEventListener("DOMContentLoaded", function () {
         initScrollAnimations();
 
-        // Tambahkan smooth hover effects
         document.querySelectorAll(".btn-primary, .btn-secondary, .btn-home").forEach((btn) => {
           btn.addEventListener("mouseenter", function () {
             this.style.transform = "translateY(-3px) scale(1.05)";
